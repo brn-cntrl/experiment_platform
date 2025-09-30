@@ -1,3 +1,6 @@
 __pycache__/
 .env
-
+frontend/README.md
+tests/*
+TranscriptionManager_old.py
+SER_Processor.py
