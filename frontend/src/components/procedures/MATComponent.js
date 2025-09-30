@@ -139,14 +139,12 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
   const [speedMessagePlayed, setSpeedMessagePlayed] = useState(false);
   const [accuracyMessagePlayed, setAccuracyMessagePlayed] = useState(false);
 
-  // Refs for audio and timers
   const audioContextRef = useRef(null);
   const audioPlayersRef = useRef({});
   const timerIntervalRef = useRef(null);
   const processAnswerRef = useRef(null);
   const isPausedRef = useRef(false);
 
-  // Initialize audio context and players
   useEffect(() => {
     audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)();
     
@@ -162,7 +160,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
     audioPlayersRef.current = audioPlayers;
 
     return () => {
-      // Cleanup audio on unmount
       Object.values(audioPlayers).forEach(player => player.stop());
       if (audioContextRef.current) {
         audioContextRef.current.close();
@@ -170,7 +167,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
     };
   }, []);
 
-  // Confirm transcription
   const confirmTranscription = useCallback(async (timeUpParam) => {
     try {
       const response = await fetch('/confirm_transcription', {
@@ -185,7 +181,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
       if (!timeUpParam) {
         setShowConfirmation(true);
       } else {
-        // Use ref to avoid circular dependency
         if (processAnswerRef.current) {
           processAnswerRef.current();
         }
@@ -195,7 +190,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
     }
   }, [testEnded]);
 
-  // Process answer
   const processAnswer = useCallback(async () => {
     if (isProcessing) return;
     
@@ -281,12 +275,10 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
     }
   }, [isProcessing, timeUp, testEnded, manualStop, testConfig.restartNumber, testConfig.numToSubtract, testConfig.countdownTime, onTaskComplete]);
 
-  // Update the ref when processAnswer changes
   useEffect(() => {
     processAnswerRef.current = processAnswer;
   }, [processAnswer]);
 
-  // End test function
   const endTest = useCallback(async () => {
     if (timerIntervalRef.current) {
       clearInterval(timerIntervalRef.current);
@@ -546,7 +538,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
         </div>
       </div>
 
-      {/* Content */}
       <div className="procedure-content">
         {/* Instructions */}
         <div className="task-instructions">
