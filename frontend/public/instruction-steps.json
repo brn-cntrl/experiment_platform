@@ -1,0 +1,179 @@
+{
+  "break": {
+    "title": "Break",
+    "steps": [
+      {
+        "id": "step1",
+        "title": "Step 1",
+        "label": "Subject Instructions",
+        "content": "1. Instruct the subject to watch the video (or listen to the audio) that loads into their screen for the specified number of minutes\n\n2. The video will stop automatically when the time is up."
+      }
+    ]
+  },
+  "sensor-placement": {
+    "title": "Attach Sensors",
+    "steps": [
+      {
+        "id": "step1",
+        "title": "Step 1",
+        "label": "Attaching EmotiBit",
+        "content": "1. Take the EmotiBit device from the kit and ensure it's powered on (green LED should be visible)\n\n2. Clean the skin area where sensors will be placed with alcohol wipes and allow to dry completely\n\n3. Remove the adhesive backing from the electrodes carefully\n\n4. Place the EmotiBit on the participant's non-dominant wrist, ensuring the sensors make good contact with clean, dry skin\n\n5. Secure the device with the provided strap, making sure it's snug but comfortable\n\n6. Verify that the USB connector is accessible for data cable connection"
+      },
+      {
+        "id": "step2",
+        "title": "Step 2",
+        "label": "Checking Fit",
+        "content": "1. Verify the EmotiBit is securely attached and won't move during the experiment\n\n2. Check that all electrodes have good skin contact with no air gaps\n\n3. Ask the participant if the fit is comfortable and not restricting circulation\n\n4. Ensure the participant can move their hand normally without the device shifting\n\n5. Look for any redness or irritation around the sensor contact points\n\n6. Adjust positioning if necessary, but avoid over-tightening the strap\n\n7. Confirm the device orientation is correct (screen/LEDs facing up)"
+      },
+      {
+        "id": "step3",
+        "title": "Step 3",
+        "label": "Signal Verification",
+        "content": "1. Connect the EmotiBit to the computer using the provided USB cable\n\n2. Open the EmotiBit monitoring software on the computer\n\n3. Verify heart rate signal is being detected (should show regular peaks)\n\n4. Check EDA baseline readings are stable and within normal range (typically 1-20 μS)\n\n5. Confirm temperature sensor shows reasonable body temperature (~32-37°C)\n\n6. Have participant take a deep breath to test signal responsiveness\n\n7. Document any signal issues in the session log and troubleshoot if needed\n\n8. If signals are poor, check sensor contact and clean skin area again"
+      }
+    ]
+  },
+  "consent": {
+    "title": "Consent Form",
+    "steps": [
+      {
+        "id": "step1",
+        "title": "Step 1",
+        "label": "Present Consent Form",
+        "content": "1. Provide the participant with the IRB-approved consent form\n\n2. Explain that they should read through the entire document carefully\n\n3. Inform them that you'll be available to answer any questions they may have\n\n4. Allow adequate time for reading (typically 5-10 minutes)\n\n5. Do not rush the participant through this process\n\n6. Ensure they understand this is voluntary and they can withdraw at any time"
+      },
+      {
+        "id": "step2",
+        "title": "Step 2",
+        "label": "Review and Questions",
+        "content": "1. Ask the participant if they have finished reading the consent form\n\n2. Ask if they have any questions about the study procedures\n\n3. Answer any questions clearly and honestly\n\n4. If you cannot answer a question, contact the principal investigator\n\n5. Ensure they understand the risks and benefits\n\n6. Confirm they understand data collection and storage procedures\n\n7. Verify they understand their right to withdraw"
+      },
+      {
+        "id": "step3",
+        "title": "Step 3",
+        "label": "Obtaining Consent",
+        "content": "1. Ask the participant if they agree to participate in the study\n\n2. If yes, have them sign and date the consent form\n\n3. Sign and date the form as the experimenter witness\n\n4. Provide the participant with a copy of the signed consent form\n\n5. File the original consent form in the appropriate location\n\n6. If they decline to participate, thank them for their time\n\n7. Document the consent process in your session notes"
+      }
+    ]
+  },
+  "demographics": {
+    "title": "Demographics Survey",
+    "steps": [
+      {
+        "id": "step1",
+        "title": "Step 1",
+        "label": "Survey Introduction",
+        "content": "1. Introduce the demographics survey to the participant\n\n2. Explain that this information helps us understand our participant population\n\n3. Assure them that all responses are confidential\n\n4. Explain that they can skip any questions they're uncomfortable answering\n\n5. Let them know approximately how long the survey will take\n\n6. Ask if they have any questions before beginning"
+      },
+      {
+        "id": "step2",
+        "title": "Step 2",
+        "label": "Administering Survey",
+        "content": "1. Present the survey questions in the order specified in your protocol\n\n2. Read questions clearly if administering verbally\n\n3. Allow adequate time for participants to respond\n\n4. Do not influence their responses with tone or body language\n\n5. Record responses accurately and legibly\n\n6. If they ask for clarification, provide neutral clarification only\n\n7. Respect if they choose to skip any questions"
+      },
+      {
+        "id": "step3",
+        "title": "Step 3",
+        "label": "Survey Completion",
+        "content": "1. Review the completed survey for any missing responses\n\n2. Ask if they'd like to complete any skipped questions\n\n3. Thank them for providing their demographic information\n\n4. Store the completed survey securely with other study materials\n\n5. Ensure participant ID is properly recorded on the survey\n\n6. Update your session log to note completion of demographics\n\n7. Proceed to the next step in your protocol"
+      }
+    ]
+  },
+  "survey": {
+    "title": "Custom Survey",
+    "steps": [
+      {
+        "id": "step1",
+        "title": "Step 1",
+        "label": "Survey Setup",
+        "content": "1. Ensure the embedded survey is properly loaded on the participant's screen\n\n2. Verify that the participant's information has been correctly pre-filled in the form\n\n3. Check that all form fields are displaying properly and are accessible\n\n4. Explain to the participant that they will be completing a survey\n\n5. Let them know approximately how long the survey should take\n\n6. Ask if they have any questions before beginning"
+      },
+      {
+        "id": "step2",
+        "title": "Step 2",
+        "label": "Survey Administration",
+        "content": "1. Instruct the participant to fill out the embedded survey completely\n\n2. Tell them to read each question carefully before responding\n\n3. Explain that they should answer honestly and to the best of their ability\n\n4. Let them know they can ask for clarification if needed\n\n5. Monitor their progress without looking at specific responses\n\n6. Remain available to answer any technical questions about the interface\n\n7. Do not influence their responses or provide guidance on content"
+      },
+      {
+        "id": "step3",
+        "title": "Step 3",
+        "label": "Survey Completion",
+        "content": "1. Ask the participant to review their responses before submitting\n\n2. Instruct them to click the submit button when they have finished the survey\n\n3. Tell them to click 'Task Complete' button once the survey has been submitted\n\n4. Verify that the survey submission was successful\n\n5. Thank them for completing the survey\n\n6. Document the survey completion in your session log\n\n7. Proceed to the next step in your experimental protocol"
+      }
+    ]
+  },
+  "baseline-recording": {
+    "title": "Baseline Recording",
+    "steps": [
+      {
+        "id": "step1",
+        "title": "Step 1",
+        "label": "Preparation",
+        "content": "1. Ensure all sensors are properly attached and showing good signals\n\n2. Have the participant sit comfortably in their chair\n\n3. Explain that you'll be recording their physiological signals at rest\n\n4. Ask them to remain as still as possible during the recording\n\n5. Dim the lights if specified in your protocol\n\n6. Minimize distractions in the room\n\n7. Start any required recording software"
+      },
+      {
+        "id": "step2",
+        "title": "Step 2",
+        "label": "Recording Baseline",
+        "content": "1. Start the baseline recording in your data collection system\n\n2. Ask the participant to relax and breathe normally\n\n3. If using eyes-closed condition, instruct them to close their eyes\n\n4. Monitor the recording for the specified duration (typically 2-5 minutes)\n\n5. Watch for any movement artifacts or signal issues\n\n6. Note any significant events during the baseline period\n\n7. Remain quiet to avoid disturbing the participant"
+      },
+      {
+        "id": "step3",
+        "title": "Step 3",
+        "label": "Completing Baseline",
+        "content": "1. Stop the baseline recording at the predetermined time\n\n2. Let the participant know the baseline recording is complete\n\n3. Ask how they felt during the recording\n\n4. Check that the baseline data was saved properly\n\n5. Review signal quality - repeat if necessary\n\n6. Document baseline completion in your session log\n\n7. Prepare for the next phase of the experiment\n\n8. Allow participant to stretch or adjust position if needed"
+      }
+    ]
+  },
+  "ser-baseline": {
+    "title": "SER Baseline Recording",
+    "steps": [
+      {
+        "id": "step1",
+        "title": "Step 1",
+        "label": "Preparation",
+        "content": "1. Ensure the microphone and audio interface (if any) are on and that all cables are properly connected\n\n2. Seat the subject and ensure the microphone is clipped securely to their clothing about 4 inches below their chin\n\n3. Check the loudness level using the audio monitoring software. Adjust loudness if needed (the signal should peak between -8dB and -6dB)"
+      },
+      {
+        "id": "step2",
+        "title": "Step 2",
+        "label": "Recording SER Baseline",
+        "content": "1. Once the procedure begins, ensure that the subject sees the SER Baseline page on their interface\n\n2. Instruct the subject to click 'Start' to begin the procedure\n\n3. The subject will be presented with a series of questions displayed on their screen. Instruct the subject to begin recording their response for each question by clicking 'Record' beneath each question\n\n4. Monitor the audio level if possible and make adjustments to the loudness if necessary. The procedure should take 2-5 minutes"
+      }
+    ]
+  },
+  "instructiontest": {
+    "title": "Instruction_test",
+    "steps": [
+      {
+        "id": "step1",
+        "title": "Step 1",
+        "label": "Instruction_test - Step 1",
+        "content": "Test 1."
+      },
+      {
+        "id": "step2",
+        "title": "Step 2",
+        "label": "Instruction_test - Step 2",
+        "content": "Test 2."
+      }
+    ]
+  },
+  "test2": {
+    "title": "Test2",
+    "steps": [
+      {
+        "id": "step1",
+        "title": "Step 1",
+        "label": "Test2 - Step 1",
+        "content": "Pet the cat."
+      },
+      {
+        "id": "step2",
+        "title": "Step 2",
+        "label": "Test2 - Step 2",
+        "content": "Feed the cat."
+      }
+    ]
+  }
+}
