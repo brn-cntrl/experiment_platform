@@ -7,3 +7,13 @@ SER_Processor.py
 SER_MODEL/
 node_modules/
 frontend/node_modules/
+init_whisper.py
+python_bindings.cpp
+scratch.txt
+scratchpad.txt
+setup.py
+timestamp_manager.cpp
+timestamp_manager.pyi
+subject_data/*
+templates/*
+trials/*
