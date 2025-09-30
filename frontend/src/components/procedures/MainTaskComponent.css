@@ -1,0 +1,333 @@
+.main-task-component {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.main-task-experimenter-control {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.main-task-status {
+  margin-bottom: 1rem;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #94a3b8;
+  transition: background-color 0.2s ease;
+}
+
+.status-dot.active {
+  background-color: #dc2626;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.main-task-controls {
+  margin-bottom: 1rem;
+}
+
+.intro-control,
+.observation-control,
+.instructions-control,
+.question-control,
+.wait-control {
+  margin-bottom: 0.75rem;
+}
+
+.intro-control label,
+.observation-control label,
+.instructions-control label,
+.question-control label,
+.wait-control label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.observation-control > div {
+  padding: 1rem;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.observation-control > div > div:first-child {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.observation-control > div > div:last-child {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.recording-status {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.25rem;
+  font-style: italic;
+}
+
+/* Full UI styles matching PRS component */
+.main-task-component .procedure-header {
+  background: #ffffff;
+  color: white;
+  padding: 30px 40px;
+  text-align: left;
+}
+
+.main-task-component .procedure-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #2d3748;
+}
+
+.main-task-component .procedure-title h3 {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 20px;
+  color: #4a5568;
+}
+
+.main-task-component .procedure-meta {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  flex-wrap: wrap;
+}
+
+.main-task-component .procedure-content {
+  padding: 40px;
+}
+
+.main-task-component .task-instructions {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.main-task-component .task-instructions h4 {
+  color: #2d3748;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.main-task-component .task-instructions ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.main-task-component .task-instructions li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.main-task-component .task-interface {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.main-task-component .intro-section,
+.main-task-component .observation-section,
+.main-task-component .instructions-section,
+.main-task-component .question-section,
+.main-task-component .wait-instructions {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 30px;
+  border: 2px solid #e2e8f0;
+}
+
+.main-task-component .intro-section h3,
+.main-task-component .observation-section h3,
+.main-task-component .instructions-section h3,
+.main-task-component .question-section h3,
+.main-task-component .wait-instructions h3 {
+  color: #2d3748;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.main-task-component .audio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.main-task-component .audio-container audio {
+  width: 100%;
+  max-width: 500px;
+}
+
+.main-task-component .observation-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.main-task-component .timer-display {
+  font-size: 4rem;
+  font-weight: 700;
+  color: #2563eb;
+  background: #eff6ff;
+  border: 2px solid #dbeafe;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.main-task-component .timer-label {
+  font-size: 1.125rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.main-task-component .completion-message {
+  text-align: center;
+  padding: 40px;
+  background: #f0fff4;
+  border-radius: 12px;
+  border: 2px solid #9ae6b4;
+}
+
+.main-task-component .completion-message h3 {
+  color: #2f855a;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.main-task-component .completion-message p {
+  color: #4a5568;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.main-task-component .task-status {
+  background: #f8fafc;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+}
+
+.main-task-component .progress-info {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .main-task-component .procedure-header {
+    padding: 20px;
+  }
+  
+  .main-task-component .procedure-title h2 {
+    font-size: 24px;
+  }
+  
+  .main-task-component .procedure-content {
+    padding: 20px;
+  }
+  
+  .main-task-component .task-status {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .main-task-component .intro-section,
+  .main-task-component .observation-section,
+  .main-task-component .instructions-section,
+  .main-task-component .question-section,
+  .main-task-component .wait-instructions {
+    padding: 20px;
+  }
+  
+  .main-task-component .timer-display {
+    font-size: 3rem;
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.main-task-experimenter-control .audio-control {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.main-task-experimenter-control .observation-timer-display {
+  padding: 20px;
+  background: #f5f5f5;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.main-task-experimenter-control .timer-count {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.main-task-experimenter-control .timer-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.main-task-experimenter-control .completion-display {
+  padding: 10px;
+  background: #e8f8e8;
+  border-radius: 5px;
+}
+
+.main-task-experimenter-control .recording-status {
+  font-size: 12px;
+  color: #666;
+  margin-top: 5px;
+}

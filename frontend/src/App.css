@@ -1,0 +1,99 @@
+.App {
+  text-align: center;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.home-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.home-page h1 {
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 2.5em;
+}
+
+.home-page p {
+  color: #666;
+  margin-bottom: 50px;
+  font-size: 1.2em;
+}
+
+.main-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.main-button {
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  padding: 30px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* .builder-button {
+  border-color: #007bff;
+} */
+
+.builder-button:hover {
+  border-color: #0056b3;
+  background-color: #f8f9ff;
+}
+
+/* .runner-button {
+  border-color: #28a745;
+} */
+
+.runner-button:hover {
+  border-color: #1e7e34;
+  background-color: #f8fff9;
+}
+
+.main-button h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.4em;
+}
+
+.main-button p {
+  margin: 0;
+  color: #666;
+  font-size: 1em;
+}
+
+/* Back button styling */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.back-button:hover {
+  background-color: #5a6268;
+}

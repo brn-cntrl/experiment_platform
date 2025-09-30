@@ -1,0 +1,379 @@
+/* Add these styles to your SubjectInterface.css file */
+
+/* MAT Component Specific Styles */
+.mat-component {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  max-width: 1000px;
+  width: 100%;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+.mat-component .procedure-header {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: white;
+  padding: 30px 40px;
+  text-align: center;
+}
+
+.mat-component .procedure-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.mat-component .procedure-title h3 {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.mat-component .procedure-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.mat-component .duration {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mat-component .active-metrics {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+}
+
+.mat-component .procedure-content {
+  padding: 40px;
+}
+
+.mat-component .task-instructions {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  border-left: 4px solid #f97316;
+}
+
+.mat-component .task-instructions h4 {
+  color: #2d3748;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mat-component .task-instructions ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.mat-component .task-instructions li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.mat-component .task-interface {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.mat-component .task-controls {
+  text-align: center;
+  padding: 40px;
+}
+
+.mat-component .task-area {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  min-height: 400px;
+}
+
+/* Single column layout override */
+.mat-component .task-area-single-column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  min-height: 400px;
+}
+
+.mat-component .stimulus-display {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e2e8f0;
+}
+
+.mat-component .timer-display {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.mat-component .main-timer h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #2d3748;
+}
+
+.mat-component .countdown-timer h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #4a5568;
+}
+
+.mat-component .clock-status {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.mat-component .result-display {
+  text-align: center;
+  width: 100%;
+}
+
+.mat-component .test-status {
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #4a5568;
+}
+
+.mat-component .result-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.mat-component .response-area {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.mat-component .response-instructions {
+  margin-bottom: 30px;
+}
+
+.mat-component .response-instructions h4 {
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+.mat-component .response-instructions p {
+  color: #4a5568;
+  font-size: 16px;
+}
+
+.mat-component .response-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.mat-component .response-btn {
+  padding: 15px 30px;
+  margin: 10px 0;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: white;
+  color: #4a5568;
+}
+
+.mat-component .response-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+}
+
+.mat-component .response-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.mat-component .response-btn.primary {
+  background: #f97316;
+  color: white;
+  border-color: #f97316;
+}
+
+.mat-component .response-btn.primary:hover:not(:disabled) {
+  background: #ea580c;
+}
+
+.mat-component .response-btn.secondary {
+  background: #718096;
+  color: white;
+  border-color: #718096;
+}
+
+.mat-component .confirmation-dialog {
+  background: #f0f8ff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.mat-component .confirmation-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.mat-component .task-status {
+  background: #f8fafc;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+}
+
+.mat-component .status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.mat-component .status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #cbd5e0;
+}
+
+.mat-component .status-dot.active {
+  background: #f97316;
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2);
+  animation: matStatusPulse 2s infinite;
+}
+
+@keyframes matStatusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(249, 115, 22, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+  }
+}
+
+.mat-component .task-complete-btn {
+  background: #48bb78;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.mat-component .task-complete-btn:hover:not(:disabled) {
+  background: #38a169;
+  transform: translateY(-2px);
+}
+
+.mat-component .task-complete-btn:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Responsive design for MAT component */
+@media (max-width: 768px) {
+  .mat-component .task-area,
+  .mat-component .task-area-single-column {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .mat-component .procedure-header {
+    padding: 20px;
+  }
+  
+  .mat-component .procedure-title h2 {
+    font-size: 24px;
+  }
+  
+  .mat-component .procedure-content {
+    padding: 20px;
+  }
+  
+  .mat-component .task-status {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+}
+
+/* Additional procedure not found styles */
+.procedure-not-found {
+  text-align: center;
+  padding: 40px;
+  background: #f8fafc;
+  border-radius: 12px;
+  margin: 20px;
+}
+
+.procedure-not-found h4 {
+  color: #e53e3e;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.procedure-not-found p {
+  color: #4a5568;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.procedure-not-found .task-complete-btn {
+  background: #4299e1;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 20px;
+}
+
+.procedure-not-found .task-complete-btn:hover {
+  background: #3182ce;
+  transform: translateY(-2px);
+}

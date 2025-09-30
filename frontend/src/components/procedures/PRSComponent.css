@@ -1,0 +1,215 @@
+/* PRS Component Styles */
+.prs-component {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  max-width: 1000px;
+  width: 100%;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+.prs-component .procedure-header {
+  background: #ffffff;
+  color: white;
+  padding: 30px 40px;
+  text-align: left;
+}
+
+.prs-component .procedure-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.prs-component .procedure-title h3 {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.prs-component .procedure-meta {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  /* gap: 30px; */
+  flex-wrap: wrap;
+}
+
+/* .prs-component .active-metrics {
+  display: flex;
+  align-items: left;
+  margin-left:.25em;
+  gap: 15px;
+  font-size: 14px;
+} */
+
+.prs-component .procedure-content {
+  padding: 40px;
+}
+
+.prs-component .task-instructions {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+
+}
+
+.prs-component .task-instructions h4 {
+  color: #2d3748;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.prs-component .task-instructions ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.prs-component .task-instructions li {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+.prs-component .task-interface {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.prs-component .intro-section,
+.prs-component .prs-questions {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 30px;
+  border: 2px solid #e2e8f0;
+}
+
+.prs-component .intro-section h3,
+.prs-component .current-question h3 {
+  color: #2d3748;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.prs-component .audio-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.prs-component .audio-container audio {
+  width: 100%;
+  max-width: 500px;
+}
+
+.prs-component .recording-status {
+  font-size: 16px;
+  font-weight: 500;
+  color: #4a5568;
+  text-align: center;
+  min-height: 20px;
+}
+
+.prs-component .completion-message {
+  text-align: center;
+  padding: 40px;
+  background: #f0fff4;
+  border-radius: 12px;
+  border: 2px solid #9ae6b4;
+}
+
+.prs-component .completion-message h3 {
+  color: #2f855a;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.prs-component .completion-message p {
+  color: #4a5568;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.prs-component .task-status {
+  background: #f8fafc;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+}
+
+.prs-component .status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.prs-component .status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #cbd5e0;
+}
+
+.prs-component .status-dot.active {
+  background: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+  animation: prsStatusPulse 2s infinite;
+}
+
+.prs-controls {
+  margin: 1em;
+}
+@keyframes prsStatusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.prs-component .progress-info {
+  font-weight: 500;
+  color: #4a5568;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .prs-component .procedure-header {
+    padding: 20px;
+  }
+  
+  .prs-component .procedure-title h2 {
+    font-size: 24px;
+  }
+  
+  .prs-component .procedure-content {
+    padding: 20px;
+  }
+  
+  .prs-component .task-status {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .prs-component .intro-section,
+  .prs-component .prs-questions {
+    padding: 20px;
+  }
+}

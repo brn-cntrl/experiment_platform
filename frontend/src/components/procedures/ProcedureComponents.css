@@ -1,0 +1,690 @@
+/* Shared Procedure Styles */
+
+.procedure-instructions {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.procedure-instructions h4 {
+  color: #2d3748;
+  margin-bottom: 20px;
+  margin:20px 0px;
+  font-size: 24px;
+  text-align: left;
+}
+
+.procedure-instructions p {
+  color: #4a5568;
+  margin-bottom: 15px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.instruction-content ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.instruction-content li {
+  margin-bottom: 8px;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.start-task-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+}
+
+.start-task-btn:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+.complete-task-btn {
+  background: #48bb78;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.2s ease;
+}
+
+.complete-task-btn:hover {
+  background: #38a169;
+  transform: translateY(-1px);
+}
+
+.task-summary {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.task-summary h3 {
+  color: #48bb78;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.task-summary p {
+  color: #4a5568;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* PsychoPy Component Styles */
+
+.psychopy-waiting-container {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  border: 2px solid #e2e8f0;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.psychopy-waiting-content {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  gap: 20px;
+}
+
+.psychopy-icon {
+  font-size: 64px;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.psychopy-waiting-content h3 {
+  color: #2d3748;
+  font-size: 28px;
+  margin-bottom: 0px;
+  margin-top:0px;
+}
+
+.psychopy-waiting-content p {
+  color: #4a5568;
+  font-size: 16px;
+  line-height: 1.0;
+  margin-bottom: 0px;
+  padding: none;
+}
+
+.custom-instructions {
+  background: #f0f9ff;
+  border: 2px solid #0ea5e9;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.custom-instructions h5 {
+  color: #0369a1;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.custom-instructions p {
+  color: #1e40af;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.default-instructions {
+  text-align: left;
+  margin: 20px 0;
+}
+
+.psychopy-notice {
+  background: #fef3c7;
+  border: 2px solid #f59e0b;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.psychopy-notice p {
+  color: #92400e;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.psychopy-indicator {
+  background: #ede9fe;
+  border: 2px solid #8b5cf6;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b46c1;
+}
+
+/* SART Component Styles */
+
+.sart-task-container {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  border: 2px solid #e2e8f0;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.sart-header {
+  margin-bottom: 30px;
+}
+
+.trial-info {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
+.instruction-reminder {
+  font-size: 14px;
+  color: #4a5568;
+  padding: 10px;
+  background: #f7fafc;
+  border-radius: 6px;
+}
+
+.target-digit {
+  font-weight: bold;
+  color: #e53e3e;
+  font-size: 16px;
+}
+
+.sart-stimulus-area {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 60px;
+  margin-bottom: 30px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #cbd5e0;
+}
+
+.digit-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+}
+
+.digit {
+  font-size: 72px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  animation: digit-appear 0.1s ease-out;
+}
+
+.digit.target {
+  color: #e53e3e;
+}
+
+.digit.non-target {
+  color: #2d3748;
+}
+
+.placeholder {
+  font-size: 48px;
+  color: #a0aec0;
+  font-weight: normal;
+}
+
+@keyframes digit-appear {
+  from { 
+    opacity: 0; 
+    transform: scale(0.8); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+.sart-stats {
+  display: flex;
+  justify-content: space-around;
+  background: #f7fafc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.sart-stats .stat-item {
+  text-align: center;
+}
+
+.sart-stats .stat-label {
+  display: block;
+  font-size: 11px;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.sart-stats .stat-value {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.sart-final-stats {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.sart-final-stats .stat-card {
+  padding: 15px;
+}
+
+.sart-final-stats .stat-number {
+  font-size: 20px;
+}
+
+.sart-final-stats .stat-label {
+  font-size: 11px;
+}
+
+.performance-note {
+  background: #f7fafc;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.performance-note p {
+  margin: 0;
+  color: #2d3748;
+  font-size: 14px;
+}
+
+/* MAT Component Styles */
+
+.mat-task-container {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  border: 2px solid #e2e8f0;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  background: #f7fafc;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  font-weight: 500;
+  color: #4a5568;
+}
+
+.timer, .progress {
+  font-family: 'Courier New', monospace;
+}
+
+.math-problem {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.math-problem h2 {
+  font-size: 36px;
+  color: #2d3748;
+  font-family: 'Courier New', monospace;
+}
+
+.answer-input {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.math-input {
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 18px;
+  text-align: center;
+  width: 120px;
+  font-family: 'Courier New', monospace;
+}
+
+.math-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.submit-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  background: #5a67d8;
+  transform: translateY(-1px);
+}
+
+.current-stats {
+  display: flex;
+  justify-content: space-around;
+  background: #f7fafc;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.final-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background: #f7fafc;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2d3748;
+  margin-bottom: 5px;
+}
+
+.stat-card .stat-label {
+  font-size: 12px;
+  color: #718096;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* PRS Component Styles */
+
+.prs-waiting-container {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  border: 2px solid #e2e8f0;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.prs-waiting-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.prs-icon {
+  font-size: 64px;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.prs-waiting-content h3 {
+  color: #2d3748;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.prs-waiting-content p {
+  color: #4a5568;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* VR Room Task Styles */
+
+.vr-waiting-container {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  border: 2px solid #e2e8f0;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.vr-waiting-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.vr-icon {
+  font-size: 64px;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.vr-waiting-content h3 {
+  color: #2d3748;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.vr-waiting-content p {
+  color: #4a5568;
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+/* Shared Waiting Styles */
+
+.waiting-stats {
+  background: #f7fafc;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  min-width: 200px;
+}
+
+.waiting-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.time-label {
+  color: #718096;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.time-value {
+  color: #2d3748;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
+.experimenter-instructions {
+  background: #edf2f7;
+  border: 2px solid #cbd5e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.experimenter-instructions h4 {
+  color: #2d3748;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.experimenter-instructions p {
+  color: #4a5568;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .procedure-instructions,
+  .task-summary,
+  .mat-task-container,
+  .vr-waiting-container,
+  .prs-waiting-container,
+  .sart-task-container,
+  .psychopy-waiting-container {
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  .sart-stimulus-area {
+    padding: 40px 20px;
+    min-height: 150px;
+  }
+  
+  .digit {
+    font-size: 56px;
+  }
+  
+  .sart-stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .sart-final-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .performance-note {
+    margin-top: 15px;
+    padding: 12px;
+  }
+  
+  .performance-note p {
+    font-size: 13px;
+  }
+  
+  .math-problem h2 {
+    font-size: 28px;
+  }
+  
+  .answer-input {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .math-input {
+    width: 200px;
+    margin-bottom: 15px;
+  }
+  
+  .current-stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .final-stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .vr-icon,
+  .prs-icon,
+  .psychopy-icon {
+    font-size: 48px;
+  }
+  
+  .vr-waiting-content h3,
+  .prs-waiting-content h3,
+  .psychopy-waiting-content h3 {
+    font-size: 24px;
+  }
+  
+  .experimenter-instructions {
+    padding: 15px;
+  }
+  
+  .custom-instructions,
+  .psychopy-notice {
+    padding: 15px;
+    margin: 15px 0;
+  }
+}

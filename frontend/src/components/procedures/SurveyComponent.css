@@ -1,0 +1,337 @@
+/* Survey Component Styles */
+.survey-component {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  max-width: 1000px;
+  width: 100%;
+  overflow: hidden;
+  margin: 20px auto;
+}
+
+.survey-component .procedure-header {
+  background: white;
+  color: #2d3748;
+  padding: 30px 40px;
+  text-align: center;
+}
+
+.survey-component .procedure-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.survey-component .procedure-title h3 {
+  font-size: 18px;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 20px;
+}
+
+.survey-component .procedure-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.survey-component .duration {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.survey-component .active-metrics {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 14px;
+}
+
+.survey-component .procedure-content {
+  padding: 40px;
+}
+
+.survey-component .task-instructions {
+  background: #f8fafc;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.survey-component .task-instructions h4 {
+  color: #2d3748;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.survey-component .task-instructions ul {
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.survey-component .task-instructions li {
+  margin: 8px 0;
+  line-height: 1.5;
+  color: #4a5568;
+}
+
+.survey-component .survey-interface {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.survey-component .survey-loading,
+.survey-component .survey-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 40px;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 2px dashed #cbd5e0;
+}
+
+.survey-component .loading-spinner {
+  font-size: 48px;
+  margin-bottom: 20px;
+  animation: surveySpinAnimation 2s linear infinite;
+}
+
+@keyframes surveySpinAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.survey-component .survey-loading p {
+  color: #4a5568;
+  font-size: 18px;
+  margin: 0;
+}
+
+.survey-component .survey-error {
+  background: #fef5e7;
+  border-color: #f59e0b;
+}
+
+.survey-component .error-icon {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.survey-component .survey-error h4 {
+  color: #d97706;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.survey-component .survey-error p {
+  color: #92400e;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.survey-component .retry-btn {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.survey-component .retry-btn:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+}
+
+.survey-component .survey-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.survey-component .survey-frame-container {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 20px;
+  border: 2px solid #e2e8f0;
+}
+
+.survey-component .survey-iframe {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 auto;
+  min-height: 600px;
+}
+
+.survey-component .survey-completion-note {
+  background: #eff6ff;
+  border: 2px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+}
+
+.survey-component .survey-completion-note p {
+  margin: 0;
+  color: #1e40af;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.survey-component .task-status {
+  background: #f8fafc;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+}
+
+.survey-component .status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+@keyframes surveyStatusPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(147, 51, 234, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0);
+  }
+}
+
+.survey-component .task-complete-btn {
+  background: #48bb78;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.survey-component .task-complete-btn:hover:not(:disabled) {
+  background: #38a169;
+  transform: translateY(-2px);
+}
+
+.survey-component .task-complete-btn:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Completion message styles */
+.survey-component .completion-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  text-align: center;
+  background: #f0fff4;
+  border-radius: 12px;
+  margin: 40px;
+}
+
+.survey-component .completion-icon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  animation: surveyBounceAnimation 1s ease-in-out;
+}
+
+@keyframes surveyBounceAnimation {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.survey-component .completion-message h2 {
+  color: #2f855a;
+  margin-bottom: 15px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.survey-component .completion-message p {
+  color: #4a5568;
+  font-size: 16px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .survey-component .procedure-header {
+    padding: 20px;
+  }
+  
+  .survey-component .procedure-title h2 {
+    font-size: 24px;
+  }
+  
+  .survey-component .procedure-content {
+    padding: 20px;
+  }
+  
+  .survey-component .task-status {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .survey-component .survey-frame-container {
+    padding: 15px;
+  }
+  
+  .survey-component .survey-iframe {
+    min-height: 500px;
+  }
+  
+  .survey-component .completion-message {
+    padding: 60px 20px;
+    margin: 20px;
+  }
+  
+  .survey-component .completion-icon {
+    font-size: 48px;
+  }
+  
+  .survey-component .completion-message h2 {
+    font-size: 24px;
+  }
+}
