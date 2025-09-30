@@ -1,0 +1,82 @@
+{
+  "id": "catprocedure_20250918_202646",
+  "name": "CatProcedure",
+  "description": "Experiment: CatProcedure",
+  "created_at": "2025-09-18T20:26:46.240Z",
+  "updated_at": "2025-09-18T20:26:46.259190+00:00",
+  "estimated_duration": 20,
+  "procedures": [
+    {
+      "id": "consent",
+      "instanceId": "consent_1758227185847",
+      "name": "Consent Form",
+      "duration": 5,
+      "customDuration": 5,
+      "color": null,
+      "required": true,
+      "position": 0,
+      "configuration": {},
+      "wizardData": {
+        "surveyFiles": null,
+        "standardFields": null,
+        "questionOrder": null,
+        "enableBranching": null,
+        "consentMethod": null,
+        "consentDocument": null,
+        "consentFilePath": null,
+        "consentLink": null,
+        "requireSignature": null,
+        "selectedSensors": null,
+        "recordingDuration": null,
+        "baselineTask": null,
+        "usePsychoPy": false,
+        "psychopyInstructions": null,
+        "sartVersion": null,
+        "targetDigit": null,
+        "rawConfiguration": {},
+        "breakDuration": null,
+        "selectedVideo": null
+      }
+    },
+    {
+      "id": "test2",
+      "instanceId": "test2_1758227194289",
+      "name": "Test2",
+      "duration": 15,
+      "customDuration": 15,
+      "color": null,
+      "required": false,
+      "position": 1,
+      "configuration": {
+        "psychopy-setup": {
+          "usePsychoPy": true
+        }
+      },
+      "wizardData": {
+        "surveyFiles": null,
+        "standardFields": null,
+        "questionOrder": null,
+        "enableBranching": null,
+        "consentMethod": null,
+        "consentDocument": null,
+        "consentFilePath": null,
+        "consentLink": null,
+        "requireSignature": null,
+        "selectedSensors": null,
+        "recordingDuration": null,
+        "baselineTask": null,
+        "usePsychoPy": true,
+        "psychopyInstructions": null,
+        "sartVersion": null,
+        "targetDigit": null,
+        "rawConfiguration": {
+          "psychopy-setup": {
+            "usePsychoPy": true
+          }
+        },
+        "breakDuration": null,
+        "selectedVideo": null
+      }
+    }
+  ]
+}

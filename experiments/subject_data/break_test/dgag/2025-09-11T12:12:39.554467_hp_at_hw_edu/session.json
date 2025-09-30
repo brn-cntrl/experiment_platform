@@ -1,0 +1,110 @@
+{
+  "session_id": "break_test_20250911_171733_20250911_191220",
+  "experiment_id": "break_test_20250911_171733",
+  "experiment_name": "break_test",
+  "status": "participant_registered",
+  "created_at": "2025-09-11T19:12:20.762835+00:00",
+  "template": {
+    "id": "break_test_20250911_171733",
+    "name": "break_test",
+    "description": "Experiment: break_test",
+    "created_at": "2025-09-11T17:17:33.676Z",
+    "updated_at": "2025-09-11T17:17:33.721196+00:00",
+    "estimated_duration": 10,
+    "procedures": [
+      {
+        "id": "consent",
+        "instanceId": "consent_1757611014729",
+        "name": "Consent Form",
+        "duration": 5,
+        "customDuration": 5,
+        "color": null,
+        "required": true,
+        "position": 0,
+        "configuration": {},
+        "wizardData": {
+          "surveyFiles": null,
+          "standardFields": null,
+          "questionOrder": null,
+          "enableBranching": null,
+          "consentMethod": null,
+          "consentDocument": null,
+          "consentFilePath": null,
+          "consentLink": null,
+          "requireSignature": null,
+          "selectedSensors": null,
+          "recordingDuration": null,
+          "baselineTask": null,
+          "usePsychoPy": false,
+          "psychopyInstructions": null,
+          "sartVersion": null,
+          "targetDigit": null,
+          "rawConfiguration": {},
+          "breakDuration": null,
+          "selectedVideo": null
+        }
+      },
+      {
+        "id": "break",
+        "instanceId": "break_1757611022885",
+        "name": "Break",
+        "duration": 5,
+        "customDuration": 5,
+        "color": null,
+        "required": false,
+        "position": 1,
+        "configuration": {
+          "duration": {
+            "duration": "5"
+          },
+          "media-selection": {
+            "duration": "5",
+            "selectedVideo": "neutral_1"
+          }
+        },
+        "wizardData": {
+          "surveyFiles": null,
+          "standardFields": null,
+          "questionOrder": null,
+          "enableBranching": null,
+          "consentMethod": null,
+          "consentDocument": null,
+          "consentFilePath": null,
+          "consentLink": null,
+          "requireSignature": null,
+          "selectedSensors": null,
+          "recordingDuration": "5",
+          "baselineTask": null,
+          "usePsychoPy": false,
+          "psychopyInstructions": null,
+          "sartVersion": null,
+          "targetDigit": null,
+          "rawConfiguration": {
+            "duration": {
+              "duration": "5"
+            },
+            "media-selection": {
+              "duration": "5",
+              "selectedVideo": "neutral_1"
+            }
+          },
+          "breakDuration": "5",
+          "selectedVideo": "neutral_1"
+        }
+      }
+    ]
+  },
+  "experiment_folder_name": "break_test",
+  "trial_name": "dgag",
+  "subject_folder": "2025-09-11T12:12:39.554467_hp_at_hw_edu",
+  "participant_info": {
+    "first_name": "h",
+    "last_name": "p",
+    "email": "hp@hw.edu",
+    "pid": "",
+    "sona_class": "",
+    "form_completed_at": "2025-09-11T19:12:39.531Z"
+  },
+  "subject_dir": "experiments/subject_data/break_test/dgag/2025-09-11T12:12:39.554467_hp_at_hw_edu",
+  "updated_at": "2025-09-11T19:12:39.557523+00:00"
+}
