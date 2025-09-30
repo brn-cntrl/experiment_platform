@@ -1,0 +1,82 @@
+{
+  "questions": {
+    "ser_1": [
+      {
+        "id": 1,
+        "text": "How are you feeling about your day so far?"
+      },
+      {
+        "id": 2,
+        "text": "What task or project are you currently working on, and how does it make you feel?"
+      },
+      {
+        "id": 3,
+        "text": "Is there anything on your mind right now that is affecting your mood?"
+      },
+      {
+        "id": 4,
+        "text": "How did your last interaction with a friend or family member make you feel today?"
+      },
+      {
+        "id": 5,
+        "text": "Can you describe a situation today that made you feel stressed?"
+      },
+      {
+        "id": 6,
+        "text": "Have you experienced any moments today that brought you joy or frustration?"
+      }
+    ],
+    "ser_2": [
+      {
+        "id": 1,
+        "text": "Tell me about something that happened this week that made you smile."
+      },
+      {
+        "id": 2,
+        "text": "Describe a recent conversation that left you feeling positive or negative."
+      },
+      {
+        "id": 3,
+        "text": "What is one thing you accomplished recently that you feel proud of?"
+      },
+      {
+        "id": 4,
+        "text": "Can you recall a moment from the past few days when you felt surprised?"
+      },
+      {
+        "id": 5,
+        "text": "Describe a challenge you faced this week and how you handled it."
+      },
+      {
+        "id": 6,
+        "text": "Tell me about an interaction you had recently that was either pleasant or disappointing."
+      }
+    ],
+    "ser_3": [
+      {
+        "id": 1,
+        "text": "What kind of activities do you enjoy doing in your free time?"
+      },
+      {
+        "id": 2,
+        "text": "Describe a place where you feel most comfortable and relaxed."
+      },
+      {
+        "id": 3,
+        "text": "What are you looking forward to in the coming weeks?"
+      },
+      {
+        "id": 4,
+        "text": "Tell me about a hobby or interest that you find engaging."
+      },
+      {
+        "id": 5,
+        "text": "What type of music or entertainment do you prefer and why?"
+      },
+      {
+        "id": 6,
+        "text": "Describe something you would like to learn or try in the future."
+      }
+    ]
+  }
+}
