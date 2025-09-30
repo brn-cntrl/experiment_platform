@@ -5,3 +5,5 @@ tests/*
 TranscriptionManager_old.py
 SER_Processor.py
 SER_MODEL/
+node_modules/
+frontend/node_modules/
