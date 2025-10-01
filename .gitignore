@@ -14,6 +14,12 @@ scratchpad.txt
 setup.py
 timestamp_manager.cpp
 timestamp_manager.pyi
-subject_data/*
-templates/*
+experiments/subject_data/*
+experiments/templates/*
 trials/*
+frontend/src/components/procedures/VRRoomTaskComponent.js
+frontend/src/components/procedures/SARTComponent.js
+frontend/src/components/archived/
+frontend/build/static/video_files/*
+.DS_Store
+**/.DS_Store
