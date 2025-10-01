@@ -52,6 +52,7 @@ const MainTaskComponent = ({
   const selectedQuestionSet = validQuestionSets.includes(questionSet) ? questionSet : 'main_task_1';
   
   // State management
+  const [isRecording, setIsRecording] = useState(false);
   const [currentPhase, setCurrentPhase] = useState('intro'); 
   const [recordingStatus, setRecordingStatus] = useState('');
   const [observationTimeLeft, setObservationTimeLeft] = useState(60);
