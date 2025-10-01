@@ -1,3 +1,42 @@
+/**
+ * MainTaskComponent
+ * 
+ * This React component manages the automated sequence for a "Room Observation Task" procedure.
+ * It handles audio playback, timed observation, automatic recording, and phase transitions for the main task.
+ * The component supports both experimenter and subject modes, with experimenter mode providing more granular controls.
+ * 
+ * Props:
+ * @param {string} questionSet - The question set to use ('main_task_1', 'main_task_2', 'main_task_3'). Defaults to 'main_task_1'.
+ * @param {Object} procedure - The procedure configuration object containing condition markers and wizard data.
+ * @param {string} sessionId - The current session identifier.
+ * @param {Function} onTaskComplete - Callback function invoked when the task is completed.
+ * @param {boolean} isExperimenterMode - If true, renders experimenter controls and audio players. Defaults to false.
+ * 
+ * State:
+ * - currentPhase: Tracks the current phase of the task ('intro', 'observation', 'instructions', 'question1', 'question2', 'wait', 'completed').
+ * - isRecording: Indicates if audio recording is in progress.
+ * - recordingStatus: Status message for recording and phase transitions.
+ * - observationTimeLeft: Countdown timer for the observation phase.
+ * - eventMarker: Marker for the current event, used for recording and logging.
+ * - condition: Condition marker for the current task, used for logging and recording.
+ * 
+ * Features:
+ * - Automated audio playback for each phase.
+ * - Timed observation and question response periods.
+ * - Automatic start/stop of audio recording with beeps for notifications.
+ * - Experimenter mode with manual audio controls.
+ * - Cleanup of timers and intervals on component unmount.
+ * 
+ * Usage:
+ * <MainTaskComponent
+ *   questionSet="main_task_1"
+ *   procedure={procedureObject}
+ *   sessionId="abc123"
+ *   onTaskComplete={handleComplete}
+ *   isExperimenterMode={true}
+ * />
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { recordTaskAudio, startRecording, playBeep, setCondition, setEventMarker } from '../utils/helpers.js';
 import './MainTaskComponent.css';
@@ -13,14 +52,12 @@ const MainTaskComponent = ({
   const selectedQuestionSet = validQuestionSets.includes(questionSet) ? questionSet : 'main_task_1';
   
   // State management
-  const [currentPhase, setCurrentPhase] = useState('intro'); // intro, observation, instructions, question1, question2, wait, completed
-  const [isRecording, setIsRecording] = useState(false);
+  const [currentPhase, setCurrentPhase] = useState('intro'); 
   const [recordingStatus, setRecordingStatus] = useState('');
   const [observationTimeLeft, setObservationTimeLeft] = useState(60);
   const [eventMarker, setEventMarkerState] = useState('');
   const [condition, setConditionState] = useState('None');
-  
-  // Refs for audio elements and timers - ALL AUDIO ELEMENTS ALWAYS EXIST
+
   const introAudioRef = useRef(null);
   const instructionsAudioRef = useRef(null);
   const question1AudioRef = useRef(null);
@@ -33,7 +70,6 @@ const MainTaskComponent = ({
   const AUDIO_DIR = `/static/audio_files/main_task_audio/${selectedQuestionSet}/`;
 
   useEffect(() => {
-    // Get condition marker from procedure configuration
     let taskCondition = 'main_task';
     
     if (procedure?.configuration?.['question-set']?.conditionMarker) {
@@ -171,12 +207,9 @@ const MainTaskComponent = ({
   const handleWaitInstructionsEnd = async () => {
     console.log("Wait for instructions completed, auto-completing task");
     setCurrentPhase('completed');
-    
-    // Set event marker to subject_idle
     setEventMarker('subject_idle');
     setCondition('None');
     
-    // Auto-complete the task
     if (onTaskComplete) {
       try {
         await onTaskComplete();
@@ -201,11 +234,9 @@ const MainTaskComponent = ({
     };
   }, []);
 
-  // Simplified UI for experimenter mode
   if (isExperimenterMode) {
     return (
       <div className="main-task-experimenter-control">
-        {/* ALL AUDIO ELEMENTS ALWAYS EXIST - HIDDEN WHEN NOT ACTIVE */}
         <audio 
           ref={introAudioRef}
           onEnded={handleIntroEnd}

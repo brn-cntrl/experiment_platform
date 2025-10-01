@@ -1,3 +1,17 @@
+/**
+ * BreakComponent displays a relaxation break video to the user for a specified duration.
+ * The component manages video loading, playback, and a countdown timer, and marks events for experiment tracking.
+ * When the break is completed, it notifies the parent via `onTaskComplete`.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.procedure - Procedure configuration object containing video selection and duration.
+ * @param {string} props.sessionId - Unique identifier for the current session.
+ * @param {Function} props.onTaskComplete - Callback function invoked when the break is completed.
+ *
+ * @returns {JSX.Element} The rendered break component UI.
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import './BreakComponent.css';
 import { setEventMarker } from '../utils/helpers';
@@ -12,7 +26,6 @@ const BreakComponent = ({ procedure, sessionId, onTaskComplete }) => {
   const timerRef = useRef(null);
   const hasStartedRef = useRef(false);
 
-  // Get break configuration
   const getBreakConfig = () => {
     const config = procedure?.configuration?.['media-selection'] || {};
     const duration = procedure?.configuration?.['duration']?.duration || 
@@ -37,7 +50,6 @@ const BreakComponent = ({ procedure, sessionId, onTaskComplete }) => {
     return videoMap[videoId] || videoMap['neutral_1'];
   };
 
-  // Get video display name
   const getVideoName = (videoId) => {
     const nameMap = {
       'neutral_1': 'Video1.mp4',
@@ -52,7 +64,6 @@ const BreakComponent = ({ procedure, sessionId, onTaskComplete }) => {
   const videoUrl = `/static/video_files/${videoFile}`;
 
   useEffect(() => {
-    // Set initial time in minutes to seconds
     setTimeRemaining(duration * 60);
   }, [duration]);
 
@@ -152,7 +163,6 @@ const BreakComponent = ({ procedure, sessionId, onTaskComplete }) => {
         <div className="procedure-title">
           <h2>Break</h2>
         </div>
-        
       </div>
 
       <div className="procedure-content">
@@ -165,7 +175,6 @@ const BreakComponent = ({ procedure, sessionId, onTaskComplete }) => {
           </ul>
         </div>
     <div className="procedure-meta">
-          {/* <div className="duration">Duration: {duration} minutes</div> */}
           <div className="video-info">Video: {videoName}</div>
           <div className="timer-display">
             Time Remaining: {formatTime(timeRemaining)}

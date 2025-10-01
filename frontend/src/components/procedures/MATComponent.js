@@ -61,8 +61,6 @@ class AudioPlayer {
 const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
   const getTestConfig = () => {
     const duration = procedure?.customDuration || procedure?.duration || 5; // minutes
-    
-    // Get the selected MAT question set from configuration
     const selectedSet = procedure?.configuration?.['stressor-type']?.matQuestionSet || 'mat_1';
     
     // Map question set IDs to test numbers
@@ -238,7 +236,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
         return;
       }
       
-      // Handle different result types
       if (timeUp) {
         audioPlayersRef.current.incorrectSound.play(false);
         audioPlayersRef.current.restartSound.play(false);
@@ -475,8 +472,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
       setTestStatus('Recording... Speak your answer and submit when ready.');
       setClockStatus('');
       setTestStarted(true);
-      
-      // Start timer and audio
       startClock();
       audioPlayersRef.current.tickingSound.play(true);
       
@@ -527,7 +522,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
 
   return (
     <div className="mat-component">
-      {/* Header */}
       <div className="procedure-header">
         <div className="procedure-title">
           <h2>Mental Arithmetic Task</h2>
@@ -539,7 +533,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
       </div>
 
       <div className="procedure-content">
-        {/* Instructions */}
         <div className="task-instructions">
           <h4>Instructions</h4>
           <ul>
@@ -615,8 +608,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
           )}
         </div>
       </div>
-
-      {/* Footer Status */}
       <div className="task-status">
         <div className="status-indicator">
           <div className={`status-dot ${testStarted ? 'active' : ''}`}></div>

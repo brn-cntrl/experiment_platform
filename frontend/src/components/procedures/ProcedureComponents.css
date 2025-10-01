@@ -1,5 +1,4 @@
 /* Shared Procedure Styles */
-
 .procedure-instructions {
   background: #f8fafc;
   padding: 30px;
@@ -96,7 +95,6 @@
 }
 
 /* PsychoPy Component Styles */
-
 .psychopy-waiting-container {
   background: white;
   border-radius: 12px;
@@ -190,7 +188,6 @@
 }
 
 /* SART Component Styles */
-
 .sart-task-container {
   background: white;
   border-radius: 12px;

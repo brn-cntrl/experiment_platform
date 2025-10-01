@@ -1,4 +1,3 @@
-/* Break Component Styles */
 .break-component {
   background: white;
   border-radius: 16px;
@@ -301,7 +300,6 @@
   }
 }
 
-/* Completion message styles */
 .break-component .completion-message {
   display: flex;
   flex-direction: column;

@@ -1,25 +1,56 @@
-// ConsentForm.js - Updated with consent agreement checkbox
+/**
+ * ConsentForm React component for displaying and recording user consent in an experiment platform.
+ *
+ * This component supports multiple consent document sources:
+ * - Uploaded PDF files
+ * - External document links
+ * - Default hard copy instructions
+ *
+ * Props:
+ * @param {Object} props
+ * @param {Object} props.procedure - Procedure configuration object containing consent document details.
+ * @param {string|number} props.sessionId - Unique identifier for the current session.
+ * @param {React.Ref} ref - Ref forwarded to expose imperative handle for procedure completion.
+ *
+ * Imperative Handle Methods:
+ * @method handleProcedureComplete
+ *   Validates user consent and records it via an API call.
+ *   Throws an error if consent is not provided.
+ *
+ * State:
+ * - consentMethod: Determines how the consent document is displayed ('upload', 'link', or 'default').
+ * - consentData: Data for the consent document (file path, file name, or link).
+ * - loading: Indicates if the consent form is loading.
+ * - error: Error message if loading fails.
+ * - consentAgreed: Tracks if the user has agreed to the consent form.
+ *
+ * UI:
+ * - Displays the consent document (PDF or link) or default instructions.
+ * - Provides a checkbox for the user to confirm consent.
+ * - Shows reminders and confirmation messages based on user interaction.
+ *
+ * @component
+ */
 
 import React, { useState, useEffect, forwardRef, useImperativeHandle } from 'react';
-import './ConsentForm.css'; // You'll need to create this CSS file
+import './ConsentForm.css'; 
 import { setEventMarker } from '../utils/helpers';
+
 
 const ConsentForm = forwardRef(({ procedure, sessionId }, ref) => {
   const [consentMethod, setConsentMethod] = useState(null);
   const [consentData, setConsentData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error] = useState(null);
-  const [consentAgreed, setConsentAgreed] = useState(false); // New state for checkbox
+  const [consentAgreed, setConsentAgreed] = useState(false); 
 
   useImperativeHandle(ref, () => ({
     handleProcedureComplete: async () => {
-      // Check if consent checkbox is checked before proceeding
       if (!consentAgreed) {
         alert('Please confirm that you have read and agree to the consent form before continuing.');
-        throw new Error('Consent not provided'); // Throw error to prevent completion
+        throw new Error('Consent not provided'); 
       }
 
-      // Handle consent-specific completion logic
       try {
         await fetch(`/api/sessions/${sessionId}/record-consent`, {
           method: 'POST',
@@ -43,12 +74,10 @@ const ConsentForm = forwardRef(({ procedure, sessionId }, ref) => {
   }));
 
   useEffect(() => {
-    // Extract consent configuration from procedure
     const config = procedure?.configuration || {};
     const documentConfig = config.document || {};
     const wizardData = procedure?.wizardData || {};
     
-    // Check multiple possible locations for consent configuration
     if (documentConfig.consentFilePath || wizardData.consentFilePath) {
       setConsentMethod('upload');
       setConsentData({
@@ -61,7 +90,6 @@ const ConsentForm = forwardRef(({ procedure, sessionId }, ref) => {
         link: documentConfig.consentLink || wizardData.consentLink
       });
     } else {
-      // Check rawConfiguration as backup
       const rawConfig = wizardData.rawConfiguration?.document || {};
       if (rawConfig.consentFilePath) {
         setConsentMethod('upload');
@@ -75,7 +103,6 @@ const ConsentForm = forwardRef(({ procedure, sessionId }, ref) => {
           link: rawConfig.consentLink
         });
       } else {
-        // If no configuration found, show a default consent form message
         setConsentMethod('default');
         setConsentData(null);
       }
@@ -112,11 +139,6 @@ const ConsentForm = forwardRef(({ procedure, sessionId }, ref) => {
 
   return (
     <div className="consent-form-container">
-      {/* <div className="consent-header">
-        <h2>Informed Consent</h2>
-        <p>Please review the consent form and provide your consent to participate in this study.</p>
-      </div> */}
-
       <div className="consent-content">
         {consentMethod === 'upload' && consentData?.filePath && (
           <div className="pdf-container">
@@ -192,7 +214,6 @@ const ConsentForm = forwardRef(({ procedure, sessionId }, ref) => {
         )}
       </div>
 
-      {/* Consent Agreement Checkbox */}
       <div className="consent-agreement">
         <div className="agreement-checkbox">
           <label className="checkbox-container">

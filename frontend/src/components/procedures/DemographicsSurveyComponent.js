@@ -1,3 +1,26 @@
+/**
+ * DemographicsSurveyComponent renders a demographics survey for participants.
+ * 
+ * Depending on the survey method specified in the procedure configuration, it either:
+ * - Opens an external survey link in a new window, or
+ * - Embeds a Google Form with autofilled participant information.
+ * 
+ * The component handles loading states, error handling, and provides instructions for completing the survey.
+ *
+ * Props:
+ * @param {Object} procedure - The procedure object containing survey configuration.
+ * @param {string} sessionId - The current participant's session ID, used for autofilling survey data.
+ *
+ * State:
+ * - surveyUrl: The URL of the survey to display or open.
+ * - loading: Indicates if the survey URL is being loaded.
+ * - error: Stores any error message encountered during loading.
+ * - externalWindowOpened: Tracks if the external survey window has been opened.
+ *
+ * Usage:
+ * Renders instructions, handles survey loading, and displays either an external link button or an embedded survey form.
+ */
+
 import React, { useState, useEffect, useCallback } from 'react';
 import './SurveyComponent.css'; // Reuse survey styles
 
@@ -20,7 +43,6 @@ const DemographicsSurveyComponent = ({ procedure, sessionId }) => {
       const surveyLinkConfig = procedure?.configuration?.['survey-link'];
 
       if (surveyMethod === 'external') {
-        // For external links, just store the URL
         if (!surveyLinkConfig?.externalLink) {
           setError('External survey link not configured. Please contact the experimenter.');
           setLoading(false);
@@ -29,14 +51,12 @@ const DemographicsSurveyComponent = ({ procedure, sessionId }) => {
         setSurveyUrl(surveyLinkConfig.externalLink);
         setLoading(false);
       } else if (surveyMethod === 'google_embedded') {
-        // For Google Forms, get autofilled URL
         if (!surveyLinkConfig?.googleFormUrl) {
           setError('Google Forms URL not configured. Please contact the experimenter.');
           setLoading(false);
           return;
         }
 
-        // Call Flask route to get autofilled URL
         const response = await fetch('/api/get-autofilled-survey-url', {
           method: 'POST',
           headers: {

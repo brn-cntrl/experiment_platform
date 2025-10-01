@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import './SubjectInterface.css';
 import { startRecording, setEventMarker } from './utils/helpers';
 import MATComponent from './procedures/MATComponent';
-import VRRoomTaskComponent from './procedures/VRRoomTaskComponent';
-import SARTComponent from './procedures/SARTComponent';
 import ConsentForm from './procedures/ConsentForm';
 import PsychoPyTransitionComponent from './procedures/PsychoPyTransitionComponent';
 import SurveyComponent from './procedures/SurveyComponent';
@@ -483,9 +481,6 @@ function SubjectInterface() {
     switch (procedureId) {
       case 'consent':
         return ConsentForm;
-      case 'sart-task':
-        return SARTComponent;
-      // REMOVED: case 'prs': return PRSComponent;
       case 'ser-baseline':
         return SERBaselineComponent;
       case 'break':
@@ -498,28 +493,14 @@ function SubjectInterface() {
           case 'consent':
           case 'informed consent':
             return ConsentForm;
-          case 'sart':
-          case 'sustained attention to response task':
-          case 'sustained attention':
-          case 'sustained attention to response task (sart)':
-            return SARTComponent;
           case 'mat':
           case 'mental arithmetic task':
           case 'math task':
           case 'stress induction':
             return MATComponent;
-          // REMOVED: case 'prs': return PRSComponent;
           case 'custom survey':
           case 'survey':
             return SurveyComponent;
-          case 'vr room task':
-          case 'vr task':
-          case 'virtual reality':
-            return VRRoomTaskComponent;
-          case 'pre-test (stroop task)':
-          case 'stroop task':
-          case 'stroop':
-            return SARTComponent; 
           case 'ser baseline recording':  
           case 'ser baseline':
           case 'speech emotion recognition':
