@@ -1,49 +1,35 @@
+/**
+ * PsychoPyTransitionComponent displays instructions and transitions for running a PsychoPy task.
+ *
+ * This component guides the user through the process of switching from the web interface
+ * to a PsychoPy experiment. It shows task-specific or default instructions, and provides
+ * a button to indicate readiness. Once started, it displays a waiting message while the
+ * user completes the task in PsychoPy.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.procedure - The procedure configuration object, including task name and PsychoPy setup.
+ * @param {string} props.sessionId - The current session identifier.
+ *
+ * @returns {JSX.Element|null} The rendered instructions or waiting message for the PsychoPy task.
+ */
+
 import React, { useState } from 'react';
 import './ProcedureComponents.css';
 
 function PsychoPyTransitionComponent({ procedure, sessionId }) {
   const [taskState, setTaskState] = useState('instructions');
-//   const [timeElapsed, setTimeElapsed] = useState(0);
-
-//   useEffect(() => {
-//     let timer;
-//     if (taskState === 'psychopy') {
-//       timer = setInterval(() => {
-//         setTimeElapsed(prev => prev + 1);
-//       }, 1000);
-//     }
-//     return () => clearInterval(timer);
-//   }, [taskState]);
-
   const startPsychoPyTask = () => {
     setTaskState('psychopy');
     // setTimeElapsed(0);
   };
 
-//   const completeTask = () => {
-//     const taskResults = {
-//       sessionId: sessionId,
-//       taskType: 'PsychoPy_Task',
-//       taskName: procedure.name,
-//       results: {
-//         timeInPsychoPy: timeElapsed,
-//         completedAt: new Date().toISOString(),
-//         status: 'completed'
-//       }
-//     };
-    
-//     console.log('PsychoPy Task Results:', taskResults);
-//     onTaskComplete();
-//   };
-
-  // Get custom instructions if provided, otherwise use default
   const getCustomInstructions = () => {
     const psychopyConfig = procedure.configuration?.['psychopy-setup'];
     return psychopyConfig?.psychopyInstructions || null;
   };
 
   const getTaskName = () => {
-    // Extract a clean task name for display
     return procedure.name || 'Cognitive Task';
   };
 
@@ -91,24 +77,6 @@ function PsychoPyTransitionComponent({ procedure, sessionId }) {
           <h3>Performing {getTaskName()} in PsychoPy</h3>
           <p>Please focus on the PsychoPy window to complete your task.</p>
           <p>Follow the instructions displayed in PsychoPy.</p>
-          
-          {/* <div className="waiting-stats">
-            <div className="waiting-time">
-              <span className="time-label">Time Elapsed</span>
-              <span className="time-value">
-                {Math.floor(timeElapsed / 60)}:{(timeElapsed % 60).toString().padStart(2, '0')}
-              </span>
-            </div>
-          </div> */}
-          
-          {/* <div className="experimenter-instructions">
-            <h4>For Experimenter:</h4>
-            <p>Monitor the participant's progress in PsychoPy. When the task is complete, instruct the participant to click "Task Complete" below.</p>
-          </div>
-          
-          <button onClick={completeTask} className="complete-task-btn">
-            Task Complete - Return to Experiment
-          </button> */}
         </div>
       </div>
     );

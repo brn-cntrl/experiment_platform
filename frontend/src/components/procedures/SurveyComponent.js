@@ -1,3 +1,18 @@
+/**
+ * SurveyComponent renders a survey interface for a given procedure.
+ * It loads a Google Form survey URL, autofilled with session-specific data,
+ * and displays it in an iframe. Handles loading, error, and retry states.
+ * Shows instructions and meta information about the survey.
+ *
+ * @component
+ * @param {Object} props
+ * @param {Object} props.procedure - The procedure object containing survey configuration and metadata.
+ * @param {string|number} props.sessionId - The current session identifier used for autofilling the survey.
+ *
+ * @example
+ * <SurveyComponent procedure={procedure} sessionId={sessionId} />
+ */
+
 import React, { useState, useEffect, useCallback } from 'react';
 import './SurveyComponent.css';
 
@@ -5,14 +20,12 @@ const SurveyComponent = ({ procedure, sessionId }) => {
   const [surveyUrl, setSurveyUrl] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  // const [surveyCompleted, setSurveyCompleted] = useState(false);
 
   const loadSurveyUrl = useCallback(async () => {
     try {
       setLoading(true);
       setError('');
 
-      // Extract survey configuration
       const surveyConfig = procedure?.configuration?.['survey-details'];
       if (!surveyConfig?.surveyName || !surveyConfig?.googleFormUrl) {
         setError('Survey configuration is incomplete. Please contact the experimenter.');
@@ -20,7 +33,6 @@ const SurveyComponent = ({ procedure, sessionId }) => {
         return;
       }
 
-      // Call Flask route to get autofilled URL
       const response = await fetch('/api/get-autofilled-survey-url', {
         method: 'POST',
         headers: {
@@ -52,36 +64,9 @@ const SurveyComponent = ({ procedure, sessionId }) => {
     loadSurveyUrl();
   }, [loadSurveyUrl]);
 
-  // const handleTaskComplete = async () => {
-  //   try {
-  //     // Mark survey as completed
-  //     setSurveyCompleted(true);
-      
-  //     // Call the parent completion handler
-  //     if (onTaskComplete) {
-  //       await onTaskComplete();
-  //     }
-  //   } catch (error) {
-  //     console.error('Error completing survey task:', error);
-  //   }
-  // };
-
   const getSurveyName = () => {
     return procedure?.configuration?.['survey-details']?.surveyName || 'Survey';
   };
-
-  // if (surveyCompleted) {
-  //   return (
-  //     <div className="survey-component">
-  //       <div className="completion-message">
-  //         <div className="completion-icon">✅</div>
-  //         <h2>Survey Completed!</h2>
-  //         <p>Thank you for completing the {getSurveyName()}.</p>
-  //         <p>Please wait for the experimenter to continue.</p>
-  //       </div>
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className="survey-component">
@@ -157,13 +142,6 @@ const SurveyComponent = ({ procedure, sessionId }) => {
           <div className="status-dot active"></div>
           <span>Survey loaded and ready</span>
         </div>
-        {/* <button 
-          onClick={handleTaskComplete} 
-          className="task-complete-btn"
-          disabled={loading || error}
-        >
-          ✅ Task Complete
-        </button> */}
       </div>
     </div>
   );

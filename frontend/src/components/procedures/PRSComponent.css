@@ -1,4 +1,3 @@
-/* PRS Component Styles */
 .prs-component {
   background: white;
   border-radius: 16px;
@@ -34,17 +33,8 @@
   display: flex;
   justify-content: left;
   align-items: left;
-  /* gap: 30px; */
   flex-wrap: wrap;
 }
-
-/* .prs-component .active-metrics {
-  display: flex;
-  align-items: left;
-  margin-left:.25em;
-  gap: 15px;
-  font-size: 14px;
-} */
 
 .prs-component .procedure-content {
   padding: 40px;

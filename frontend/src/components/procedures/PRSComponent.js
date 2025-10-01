@@ -1,3 +1,31 @@
+
+/**
+ * PRSComponent renders the Perceived Restorativeness Scale (PRS) task interface.
+ * It manages audio playback, randomized question order, recording user responses,
+ * and transitions between introduction, questions, and final instructions.
+ *
+ * @component
+ * @param {Object} props - Component props.
+ * @param {string} [props.questionSet='prs_1'] - The question set to use ('prs_1', 'prs_2', or 'prs_3').
+ * @param {Object} props.procedure - Procedure configuration object.
+ * @param {number} props.prsSequenceNumber - Sequence number for the PRS event marker.
+ * @param {string} props.sessionId - Session identifier for the experiment.
+ * @param {Function} props.onTaskComplete - Callback invoked when the PRS task is completed.
+ * @param {boolean} [props.isExperimenterMode=false] - If true, renders experimenter controls.
+ *
+ * @returns {JSX.Element} The rendered PRS task component.
+ *
+ * @example
+ * <PRSComponent
+ *   questionSet="prs_2"
+ *   procedure={procedureConfig}
+ *   prsSequenceNumber={2}
+ *   sessionId="abc123"
+ *   onTaskComplete={handleComplete}
+ *   isExperimenterMode={true}
+ * />
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { recordTaskAudio, startRecording, playBeep, setCondition, setEventMarker } from '../utils/helpers.js';
 import './PRSComponent.css';
@@ -39,7 +67,6 @@ const PRSComponent = ({
     const fetchAudioFiles = async () => {
       try {
         console.log(`Fetching audio files for question set: ${selectedQuestionSet}`);
-        
         const response = await fetch(`/api/audio-files/${selectedQuestionSet}`);
         
         if (!response.ok) {
@@ -50,8 +77,6 @@ const PRSComponent = ({
         
         if (data.success && data.question_files) {
           console.log(`Found ${data.question_files.length} question files:`, data.question_files);
-          
-          // Shuffle the question files using Fisher-Yates algorithm
           const shuffled = [...data.question_files];
           for (let i = shuffled.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -106,7 +131,6 @@ const PRSComponent = ({
       setRecordingStatus('');
       console.log(`Playing audio ${currentIndex + 1}/${audioFiles.length}: ${baseName}`);
       
-      // Use the single current audio ref
       if (currentQuestionAudioRef.current) {
         currentQuestionAudioRef.current.load();
         currentQuestionAudioRef.current.play().catch(console.error);
@@ -131,12 +155,9 @@ const PRSComponent = ({
   const handleWaitInstructionsEnd = async () => {
     console.log("Wait for instructions completed, auto-completing task");
     setAllCompleted(true);
-    
-    // Set event marker to subject_idle
     setEventMarker('subject_idle');
     setCondition('None');
     
-    // Auto-complete the task
     if (onTaskComplete) {
       try {
         await onTaskComplete();

@@ -1,21 +1,36 @@
+/**
+ * SERBaselineComponent
+ * 
+ * React component for conducting a Speech Emotion Recognition (SER) baseline recording session.
+ * 
+ * This component guides the user through a series of spoken questions, records their responses,
+ * and manages the flow of the SER baseline procedure. It interacts with backend endpoints to
+ * initialize the session, fetch questions, process answers, and handle completion.
+ * 
+ * Props:
+ * @param {string} sessionId - Unique identifier for the current session.
+ * @param {function} onTaskComplete - Callback function invoked when the SER baseline task is completed.
+ * @param {object} procedure - Procedure configuration object containing question set information.
+ * 
+ * State:
+ * - hasStarted: Indicates if the baseline recording session has started.
+ * - currentQuestion: The current question being displayed to the user.
+ * - isRecording: Indicates if audio recording is active.
+ * - recordingStatus: Status message for the recording process.
+ * - taskCompleted: Indicates if all questions have been answered and the task is complete.
+ * - questionIndex: Index of the current question in the sequence.
+ * - isSubmitting: Indicates if an answer is being submitted.
+ * 
+ * Usage:
+ * Renders instructions, manages recording controls, displays questions, and handles user interaction
+ * for submitting answers and completing the baseline session.
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { startRecording, setEventMarker } from '../utils/helpers.js';
 import './SERBaselineComponent.css';
 
-/**
- * SER Baseline Component for Speech Emotion Recognition baseline recordings
- * 
- * This component presents a series of questions to participants and records their
- * verbal responses for speech emotion recognition baseline establishment.
- * 
- * Props:
- * - sessionId: string - The current session identifier
- * - onTaskComplete: function - Callback when task is completed
- * - procedure: object - The procedure configuration containing question set selection
- */
-
 const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
-  // State management
   const [hasStarted, setHasStarted] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState('');
   const [isRecording, setIsRecording] = useState(false);
@@ -24,21 +39,12 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
   const [questionIndex, setQuestionIndex] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Refs for managing component lifecycle
   const componentMountedRef = useRef(true);
 
-  // Initialize component
   useEffect(() => {
-    // Set event marker and condition when component mounts
     setEventMarker('ser_baseline');
-    // setCondition('None');
-    
-    // return () => {
-    //   componentMountedRef.current = false;
-    // };
   }, []);
 
-  // Get the selected question set from procedure configuration
   const getQuestionSet = () => {
     const questionSet = procedure?.configuration?.['question-set']?.questionSet;
     return questionSet || 'ser_1'; // Default to ser_1 if not configured
@@ -54,29 +60,23 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
     return displayNames[questionSet] || 'Standard Baseline Questions';
   };
 
-  // Handle beginning the SER baseline procedure
   const handleBegin = async () => {
     try {
         setRecordingStatus('Starting...');
-        
-        // Set event marker and condition
         setEventMarker('ser_baseline');
-        
-        // Initialize SER baseline with selected question set
+    
         const questionSet = getQuestionSet();
         await fetch('/initialize_ser_baseline', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ questionSet })
         });
-        
-        // Start recording
+      
         await startRecording();
         setIsRecording(true);
         setHasStarted(true);
         setRecordingStatus('Recording... Please speak clearly.');
         
-        // Add small delay to ensure state has updated
         setTimeout(async () => {
             await fetchNextQuestion();
         }, 200);
@@ -88,7 +88,6 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
     }
 };
 
-  // Fetch the next question from the backend
   const fetchNextQuestion = async () => {
     try {
         console.log('🔍 fetchNextQuestion called');
@@ -115,7 +114,7 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
             setRecordingStatus('Task completed.');
         } else if (data.question) {
             console.log('📋 Setting question:', data.question);
-            // Use a small delay to ensure state updates properly
+        
             setTimeout(() => {
                 setCurrentQuestion(data.question);
                 setRecordingStatus('Recording... Please speak clearly. Press "Submit Answer" when finished.');
@@ -135,7 +134,6 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
     }
 };
 
-  // Submit the current answer and move to the next question
   const handleSubmitAnswer = async () => {
     if (isSubmitting || taskCompleted) return;
     
@@ -163,11 +161,9 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
       setRecordingStatus(data.status);
       console.log('Answer processed:', data.message);
       
-      // Start recording for the next question
       try {
         await startRecording();
         setIsRecording(true);
-        // Fetch the next question
         await fetchNextQuestion();
       } catch (error) {
         console.error('Error starting next recording:', error);
@@ -182,9 +178,7 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
     }
   };
 
-  // Handle task completion
   const handleTaskComplete = () => {
-    // Set event marker to idle state
     setEventMarker('subject_idle');
     if (onTaskComplete) {
       onTaskComplete();
