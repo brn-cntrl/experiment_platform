@@ -15,11 +15,14 @@ setup.py
 timestamp_manager.cpp
 timestamp_manager.pyi
 experiments/subject_data/*
+!experiments/subject_data/.gitkeep
 experiments/templates/*
+!experiments/templates/.gitkeep
 trials/*
 frontend/src/components/procedures/VRRoomTaskComponent.js
 frontend/src/components/procedures/SARTComponent.js
 frontend/src/components/archived/
 frontend/build/static/video_files/*
+!frontend/build/static/video_files/.gitkeep
 .DS_Store
 **/.DS_Store
