@@ -1998,6 +1998,25 @@ function WizardStepContent({ stepId, procedureId, value, onChange }) {
       );
     
     case 'duration':
+      if (procedureId === 'stressor') {
+        return (
+          <div className="form-group">
+            <label>Task Duration (minutes)</label>
+            <input 
+              type="number" 
+              value={formData.duration || ''}
+              onChange={(e) => handleInputChange('duration', e.target.value)}
+              min="1"
+              max="60"
+              placeholder="5"
+            />
+            <small style={{ color: '#666', display: 'block', marginTop: '8px' }}>
+              Default: 5 minutes. Specify a custom duration to override the default for the Mental Arithmetic Task.
+            </small>
+          </div>
+        );
+      }
+    
       return (
         <div className="form-group">
           <label>Duration (minutes)</label>
@@ -2092,18 +2111,25 @@ function ExperimentBuilder({ onBack }) {
 
   const handleWizardSave = (configuration) => {
     setSelectedProcedures(prev =>
-      prev.map(p =>
-        p.instanceId === currentWizardProcedure.instanceId
-          ? { 
-              ...p, 
-              configuration,
-              wizardData: {
-                ...p.wizardData,
-                rawConfiguration: configuration
-              }
+      prev.map(p => {
+        if (p.instanceId === currentWizardProcedure.instanceId) {
+          // Extract duration from configuration if present
+          const customDuration = configuration.duration?.duration 
+            ? parseInt(configuration.duration.duration) 
+            : p.customDuration || p.duration;
+          
+          return { 
+            ...p, 
+            configuration,
+            customDuration,  // Update customDuration
+            wizardData: {
+              ...p.wizardData,
+              rawConfiguration: configuration
             }
-          : p
-      )
+          };
+        }
+        return p;
+      })
     );
   };
 

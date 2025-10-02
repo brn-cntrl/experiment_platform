@@ -221,7 +221,6 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
         setResult(data.result || 'Task stopped');
         setTestStarted(false);
         
-        // Set event marker to idle
         await fetch('/set_event_marker', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

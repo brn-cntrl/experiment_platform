@@ -442,6 +442,11 @@
         "id": "stressor-type",
         "title": "Stress Induction Method",
         "description": "Choose stress manipulation task"
+      },
+      {
+        "id": "duration",
+        "title": "Task Duration",
+        "description": "Set the duration for the stress induction task"
       }
     ],
     "main-task": [

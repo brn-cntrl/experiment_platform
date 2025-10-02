@@ -192,6 +192,8 @@
   flex-direction: column;
   gap: 15px;
   width: 100%;
+  min-height: 280px;
+  justify-content: flex-end;
 }
 
 .mat-component .response-btn {
