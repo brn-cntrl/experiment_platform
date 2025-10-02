@@ -18,6 +18,8 @@ experiments/subject_data/*
 !experiments/subject_data/.gitkeep
 experiments/templates/*
 !experiments/templates/.gitkeep
+tmp/*
+!tmp/.gitkeep
 trials/*
 frontend/src/components/procedures/VRRoomTaskComponent.js
 frontend/src/components/procedures/SARTComponent.js
