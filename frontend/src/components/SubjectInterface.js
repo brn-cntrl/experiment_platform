@@ -217,6 +217,20 @@ function SubjectInterface() {
         setShowAudioTest(true);
         setCurrentTask('audio_test');
       }
+
+      if (data.event_type === 'experiment_completed' && data.session_id === sessionId) {
+        console.log("Subject: Experiment completed, closing window");
+        eventSource.close();
+        
+        document.body.innerHTML = '<div style="text-align:center;padding:50px;font-family:sans-serif;"><h2>Experiment Complete</h2><p>Thank you for participating!</p><p>This window will close automatically...</p></div>';
+        
+        setTimeout(() => {
+          window.close();
+          setTimeout(() => {
+            document.body.innerHTML = '<div style="text-align:center;padding:50px;font-family:sans-serif;"><h2>Experiment Complete</h2><p>Thank you for participating!</p><p>You can now close this window.</p></div>';
+          }, 1000);
+        }, 2000);
+      }
     };
     
     eventSource.onerror = function(event) {
@@ -227,7 +241,6 @@ function SubjectInterface() {
   }, [sessionId, experimentData]);
 
   useEffect(() => {
-    // Only show warning if there's an active session and form is submitted
     if (!sessionId || showForm) return;
 
     const handleBeforeUnload = (event) => {
@@ -237,23 +250,20 @@ function SubjectInterface() {
       return message; // For other browsers
     };
 
-    // Add the event listener
     window.addEventListener('beforeunload', handleBeforeUnload);
 
-    // Cleanup function to remove the event listener
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [sessionId, showForm]);
 
   const handleConsentComplete = async () => {
-    // First check with ConsentForm component for validation
     if (procedureComponentRef.current?.handleProcedureComplete) {
       try {
         await procedureComponentRef.current.handleProcedureComplete();
       } catch (error) {
         console.error('Consent validation failed:', error);
-        // Don't proceed if validation failed
+        
         return;
       }
     }
@@ -286,7 +296,6 @@ function SubjectInterface() {
     }
   };
 
-  // Add function to get consent procedure
   const getConsentProcedure = () => {
     if (!experimentData?.procedures) return null;
     return experimentData.procedures.find(proc => 
@@ -451,13 +460,10 @@ function SubjectInterface() {
   };
 
   const isPsychoPyTask = (procedure) => {
-    // Check if this procedure is configured to use PsychoPy
-    // First check the psychopy-setup configuration (new format)
     if (procedure.configuration?.['psychopy-setup']?.usePsychoPy) {
       return true;
     }
     
-    // Also check wizardData for backward compatibility
     if (procedure.wizardData?.usePsychoPy) {
       return true;
     }
@@ -466,7 +472,6 @@ function SubjectInterface() {
   };
 
   const getProcedureComponent = (procedureName, procedureConfig, procedureId, procedure) => {
-    // Check if this task should use PsychoPy
     if (isPsychoPyTask(procedure)) {
       return PsychoPyTransitionComponent;
     }
@@ -507,7 +512,7 @@ function SubjectInterface() {
             return SERBaselineComponent;
           case 'break':  
             return BreakComponent;
-          case 'demographics survey':  // ADD THIS CASE
+          case 'demographics survey':  
           case 'demographics':
             return DemographicsSurveyComponent;
 
@@ -656,11 +661,8 @@ function SubjectInterface() {
     );
 
     const getQuestionSet = () => {
-      // Remove PRS-specific logic since PRS is no longer handled here
       return undefined;
     };
-
-    // Remove PRS sequence logic since PRS is no longer handled here
 
     return (
       <div className="procedure-container">
@@ -675,7 +677,6 @@ function SubjectInterface() {
               onTaskComplete={handleTaskComplete}
               ref={procedureComponentRef}
               questionSet={getQuestionSet()}
-              // Removed prsSequenceNumber prop since PRS is no longer handled here
             />
           ) : (
             <div className="procedure-not-found">
@@ -708,7 +709,6 @@ function SubjectInterface() {
       );
     }
 
-    // Check if current procedure is PRS - show supervisor message
     if (currentProcedure && (currentProcedure.id === 'prs' || currentProcedure.id === 'main-task')) {
       return (
         <div className="waiting-screen">
@@ -767,10 +767,8 @@ function SubjectInterface() {
         </div>
       </div>
     ) : showForm ? (
-      // Show participant form after consent or directly if not in consent mode
       renderParticipantForm()
     ) : (
-      // Show normal task flow
       renderCurrentTask()
     )}
     </div>

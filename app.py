@@ -2170,10 +2170,16 @@ def complete_experiment(session_id):
             with open(session_file, 'w') as f:
                 json.dump(session_data, f, indent=2)
         
+        completion_event = {
+            'event_type': 'experiment_completed',
+            'session_id': session_id,
+            'message': 'Experiment has been completed and system is resetting'
+        }
+        broadcast_to_session(session_id, completion_event)
+        
         reset_experiment_managers()
         
         if session_id in session_queues:
-            # Signal SSE connections to close
             try:
                 session_queues[session_id].put(None)
             except:
@@ -2245,7 +2251,7 @@ def reset_experiment_managers():
         subject_manager = SubjectManager()
         event_manager = EventManager()
         form_manager = FormManager()
-        
+
         print("All experiment managers reset successfully")
         
     except Exception as e:
