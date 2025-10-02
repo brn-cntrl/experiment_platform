@@ -2242,6 +2242,10 @@ def reset_experiment_managers():
         subject_manager = None
         event_manager = None
         
+        subject_manager = SubjectManager()
+        event_manager = EventManager()
+        form_manager = FormManager()
+        
         print("All experiment managers reset successfully")
         
     except Exception as e:

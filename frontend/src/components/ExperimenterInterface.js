@@ -1555,9 +1555,26 @@ useEffect(() => {
       });
 
       if (response.ok) {
-        alert('Experiment completed successfully! You can now start a new experiment.');
-        // Reload the page to reset the interface
-        window.location.reload();
+        alert('Experiment completed successfully! The system has been reset.');
+        
+        // Try to navigate the opener window back to home (if it exists)
+        if (window.opener && !window.opener.closed) {
+          try {
+            window.opener.location.href = window.opener.location.origin;
+          } catch (e) {
+            // Cross-origin security might prevent this
+            console.log('Could not navigate opener window');
+          }
+        }
+        
+        // Close this experimenter window
+        window.close();
+        
+        // Fallback: if window.close() doesn't work (some browsers block it),
+        // redirect to a "close this window" page
+        setTimeout(() => {
+          document.body.innerHTML = '<div style="text-align:center;padding:50px;"><h2>Experiment Complete</h2><p>You can now close this window.</p></div>';
+        }, 1000);
       } else {
         console.error('Error completing experiment');
         alert('Error completing experiment. Please check the console.');
