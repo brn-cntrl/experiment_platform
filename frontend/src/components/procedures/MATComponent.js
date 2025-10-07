@@ -60,6 +60,13 @@ class AudioPlayer {
 
 const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
   const getTestConfig = () => {
+    console.log('=== MAT DEBUG ===');
+    console.log('Full procedure object:', procedure);
+    console.log('procedure.customDuration:', procedure?.customDuration);
+    console.log('procedure.configuration:', procedure?.configuration);
+    console.log('stressor-type config:', procedure?.configuration?.['stressor-type']);
+    console.log('matQuestionSet value:', procedure?.configuration?.['stressor-type']?.matQuestionSet);
+
     const duration = procedure?.customDuration || procedure?.duration || 5; // minutes
     const selectedSet = procedure?.configuration?.['stressor-type']?.matQuestionSet || 'mat_1';
     
@@ -70,7 +77,9 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
       'mat_2': 2
     };
     
-    const testNumber = setToTestNumber[selectedSet] || 1;
+    const testNumber = setToTestNumber[selectedSet] ?? 1;
+    console.log('testNumber:', testNumber);
+    console.log('=================');
     
     // Get configuration based on test number
     const testConfigs = {
@@ -568,9 +577,10 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
                 </div>
                 
                 <div className="result-display">
-                  <div className="test-status">{testStatus}</div>
-                  <div className="result-text">{result}</div>
+                  <div className="test-status">{testStatus || '\u00A0'}</div>
+                  <div className="result-text">{result || '\u00A0'}</div>
                 </div>
+
               </div>
 
               <div className="response-area">
@@ -579,28 +589,38 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
                   <p>Speak your answer clearly and press Submit</p>
                 </div>
 
-                <div className="response-controls">
-                  {showConfirmation && (
-                    <div className="confirmation-dialog">
-                      <p>{transcription}</p>
-                      <div className="confirmation-buttons">
-                        <button onClick={handleConfirmationYes} className="response-btn primary">
-                          Yes
-                        </button>
-                        <button onClick={handleConfirmationNo} className="response-btn secondary">
-                          No
-                        </button>
-                      </div>
+                <div className="response-controls-fixed">
+                  <div className={`confirmation-dialog-fixed ${showConfirmation ? 'visible' : 'hidden'}`}>
+                    <p className="transcription-text">{transcription || '\u00A0'}</p>
+                    <div className="confirmation-buttons-fixed">
+                      <button 
+                        onClick={handleConfirmationYes} 
+                        className="response-btn primary"
+                        disabled={!showConfirmation}
+                        style={{ visibility: showConfirmation ? 'visible' : 'hidden' }}
+                      >
+                        Yes
+                      </button>
+                      <button 
+                        onClick={handleConfirmationNo} 
+                        className="response-btn secondary"
+                        disabled={!showConfirmation}
+                        style={{ visibility: showConfirmation ? 'visible' : 'hidden' }}
+                      >
+                        No
+                      </button>
                     </div>
-                  )}
+                  </div>
 
-                  <button 
-                    onClick={submitAnswer} 
-                    disabled={isProcessing || showConfirmation}
-                    className="response-btn primary"
-                  >
-                    Submit Answer
-                  </button>
+                  <div className="submit-button-container-fixed">
+                    <button 
+                      onClick={submitAnswer} 
+                      disabled={isProcessing || showConfirmation}
+                      className="response-btn primary submit-btn-fixed"
+                    >
+                      Submit Answer
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

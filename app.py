@@ -29,13 +29,13 @@ update_event = threading.Event()
 update_message = None
 
 EXPERIMENT_TEMPLATES_DIR = "experiments/templates"
-EXPERIMENT_TRIALS_DIR = "experiments/trials"
+# EXPERIMENT_TRIALS_DIR = "experiments/trials"
 EXPERIMENT_SUBJECT_DATA_DIR = "experiments/subject_data"
 TEST_FILES_DIR = "test_files"
 CONSENT_FORMS_DIR = "static/consent_forms"
 
 os.makedirs(EXPERIMENT_TEMPLATES_DIR, exist_ok=True)
-os.makedirs(EXPERIMENT_TRIALS_DIR, exist_ok=True)
+# os.makedirs(EXPERIMENT_TRIALS_DIR, exist_ok=True)
 os.makedirs(EXPERIMENT_SUBJECT_DATA_DIR, exist_ok=True)
 os.makedirs(TEST_FILES_DIR, exist_ok=True)
 os.makedirs(CONSENT_FORMS_DIR, exist_ok=True)
