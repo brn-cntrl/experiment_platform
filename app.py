@@ -31,7 +31,7 @@ update_message = None
 EXPERIMENT_TEMPLATES_DIR = "experiments/templates"
 # EXPERIMENT_TRIALS_DIR = "experiments/trials"
 EXPERIMENT_SUBJECT_DATA_DIR = "experiments/subject_data"
-TEST_FILES_DIR = "test_files"
+TEST_FILES_DIR = "static/test_files"
 CONSENT_FORMS_DIR = "static/consent_forms"
 
 os.makedirs(EXPERIMENT_TEMPLATES_DIR, exist_ok=True)
@@ -62,7 +62,7 @@ SENSOR_MAPPING = {
     'Eye Tracking': 'eye_tracking'
 }
 
-app = Flask(__name__, static_folder='frontend/build', static_url_path='')
+app = Flask(__name__, static_folder='static', static_url_path='')
 app.config['DEBUG'] = True
 
 CORS(app, resources={
@@ -211,7 +211,7 @@ def get_audio_files(question_set):
     """
     
     try:
-        audio_dir = os.path.join('frontend', 'build', 'static', 'audio_files', question_set)
+        audio_dir = os.path.join('static', 'audio_files', question_set)
         
         if not os.path.exists(audio_dir):
             return jsonify({'error': f'Audio directory not found: {audio_dir}'}), 404

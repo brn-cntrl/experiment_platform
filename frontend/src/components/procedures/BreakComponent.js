@@ -61,7 +61,7 @@ const BreakComponent = ({ procedure, sessionId, onTaskComplete }) => {
 
   const videoFile = getVideoFile(selectedVideo);
   const videoName = getVideoName(selectedVideo);
-  const videoUrl = `/static/video_files/${videoFile}`;
+  const videoUrl = `/video_files/${videoFile}`;
 
   useEffect(() => {
     setTimeRemaining(duration * 60);

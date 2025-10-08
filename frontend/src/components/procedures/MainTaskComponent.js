@@ -68,7 +68,7 @@ const MainTaskComponent = ({
   const recordingTimeoutRef = useRef(null);
   const beepTimeoutRef = useRef(null);
   
-  const AUDIO_DIR = `/static/audio_files/main_task_audio/${selectedQuestionSet}/`;
+  const AUDIO_DIR = `/audio_files/main_task_audio/${selectedQuestionSet}/`;
 
   useEffect(() => {
     let taskCondition = 'main_task';

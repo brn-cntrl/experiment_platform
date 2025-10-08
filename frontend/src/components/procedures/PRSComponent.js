@@ -59,7 +59,7 @@ const PRSComponent = ({
   const beepTimeoutRef = useRef(null);
   const currentQuestionAudioRef = useRef(null);
 
-  const AUDIO_DIR = `/static/audio_files/${selectedQuestionSet}/`;
+  const AUDIO_DIR = `/audio_files/${selectedQuestionSet}/`;
   const INTRO_FILE = '1-PRS-Intro.mp3';
   const WAIT_FILE = 'Wait_For_Instructions.mp3';
 

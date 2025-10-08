@@ -145,7 +145,7 @@ const ConsentForm = forwardRef(({ procedure, sessionId }, ref) => {
             <h3>Consent Document</h3>
             <div className="pdf-viewer">
               <iframe
-                src={`/static/consent_forms/${consentData.filePath.split('/').slice(-2).join('/')}`}
+                src={`/consent_forms/${consentData.filePath.split('/').slice(-2).join('/')}`}
                 width="100%"
                 height="600px"
                 title="Consent Form"
@@ -156,7 +156,7 @@ const ConsentForm = forwardRef(({ procedure, sessionId }, ref) => {
               >
                 <p>
                   Your browser does not support displaying PDF files. 
-                  <a href={`/static/consent_forms/${consentData.filePath.split('/').slice(-2).join('/')}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`/consent_forms/${consentData.filePath.split('/').slice(-2).join('/')}`} target="_blank" rel="noopener noreferrer">
                     Click here to download the consent form.
                   </a>
                 </p>

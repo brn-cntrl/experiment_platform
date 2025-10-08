@@ -5,7 +5,7 @@ class TestManager:
     def __init__(self) -> None:
         print("Test Manager initialized...")
         try:
-            with open('frontend/build/static/test_files/SER_questions.json') as f:
+            with open('static/test_files/SER_questions.json') as f:
                 self._ser_questions = json.load(f)
                 print("SER_questions.json loaded successfully")
 
@@ -14,7 +14,7 @@ class TestManager:
             print("SER baseline file, SER_questions.json not found")
 
         try:
-            with open('frontend/build/static/test_files/task_0_data.json') as f: # Task 0 is stressor practice test
+            with open('static/test_files/task_0_data.json') as f: # Task 0 is stressor practice test
                 self._task_0_questions = json.load(f)
                 print("Stressor task file, task_0_data.json loaded successfully")
         except FileNotFoundError:
@@ -22,7 +22,7 @@ class TestManager:
             print("task_0_data.json not found")
 
         try:
-            with open('frontend/build/static/test_files/task_1_data.json') as f:
+            with open('static/test_files/task_1_data.json') as f:
                 self._task_1_questions = json.load(f)
                 print("Stressor task file, task_1_data.json loaded successfully")
 
@@ -31,7 +31,7 @@ class TestManager:
             print("task_1_data.json not found")
 
         try:
-            with open('frontend/build/static/test_files/task_2_data.json') as f:
+            with open('static/test_files/task_2_data.json') as f:
                 self._task_2_questions = json.load(f)
                 print("Stressor task 2 file, task_2_data.json loaded successfully")
 

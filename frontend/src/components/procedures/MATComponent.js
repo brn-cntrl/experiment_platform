@@ -323,24 +323,24 @@ const MATComponent = ({ procedure, sessionId, onTaskComplete }) => {
     };
 
     try {
-      await safeLoad(tickingSound, '/static/test_audio/ticking.mp3', 'ticking sound');
-      await safeLoad(correctSound, '/static/test_audio/correct_v2.mp3', 'correct sound');
-      await safeLoad(incorrectSound, '/static/test_audio/incorrect_v2.mp3', 'incorrect sound');
+      await safeLoad(tickingSound, '/test_audio/ticking.mp3', 'ticking sound');
+      await safeLoad(correctSound, '/test_audio/correct_v2.mp3', 'correct sound');
+      await safeLoad(incorrectSound, '/test_audio/incorrect_v2.mp3', 'incorrect sound');
       
       tickingSound.setVolume(0.2);
       correctSound.setVolume(0.4);
       incorrectSound.setVolume(0.4);
       
       if (testConfig.testNumber === 0) {
-        await safeLoad(restartSound, '/static/test_audio/Practice_Test_Restart.mp3', 'practice restart sound');
+        await safeLoad(restartSound, '/test_audio/Practice_Test_Restart.mp3', 'practice restart sound');
       } else if (testConfig.testNumber === 1) {
-        await safeLoad(restartSound, '/static/test_audio/Test1_Restart.mp3', 'test 1 restart sound');
-        await safeLoad(speedMessage, '/static/test_audio/speed_1.mp3', 'speed message 1');
-        await safeLoad(accuracyMessage, '/static/test_audio/accuracy_1.mp3', 'accuracy message 1');
+        await safeLoad(restartSound, '/test_audio/Test1_Restart.mp3', 'test 1 restart sound');
+        await safeLoad(speedMessage, '/test_audio/speed_1.mp3', 'speed message 1');
+        await safeLoad(accuracyMessage, '/test_audio/accuracy_1.mp3', 'accuracy message 1');
       } else if (testConfig.testNumber === 2) {
-        await safeLoad(restartSound, '/static/test_audio/Test2_Restart.mp3', 'test 2 restart sound');
-        await safeLoad(speedMessage, '/static/test_audio/speed_2.mp3', 'speed message 2');
-        await safeLoad(accuracyMessage, '/static/test_audio/accuracy_2.mp3', 'accuracy message 2');
+        await safeLoad(restartSound, '/test_audio/Test2_Restart.mp3', 'test 2 restart sound');
+        await safeLoad(speedMessage, '/test_audio/speed_2.mp3', 'speed message 2');
+        await safeLoad(accuracyMessage, '/test_audio/accuracy_2.mp3', 'accuracy message 2');
       }
       
       if (restartSound.buffer) restartSound.setVolume(0.8);

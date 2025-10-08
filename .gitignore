@@ -28,3 +28,4 @@ frontend/build/static/video_files/*
 !frontend/build/static/video_files/.gitkeep
 .DS_Store
 **/.DS_Store
+/frontend/build/
