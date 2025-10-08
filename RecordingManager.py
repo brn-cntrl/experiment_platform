@@ -1,7 +1,6 @@
 import threading
 import pyaudio
 import wave
-import speech_recognition as sr
 import TimestampManager as tm
 
 class RecordingManager():
