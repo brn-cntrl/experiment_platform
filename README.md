@@ -36,17 +36,16 @@ This platform provides researchers with a comprehensive toolkit for designing an
 - **Biometric Sensors**: EmotiBit integration for HR, EDA, EEG
 - **Respiratory Monitoring**: Vernier belt integration
 - **Survey Integration**: Google Forms with auto-fill capabilities
-- **Consent Management**: Digital consent forms with signature capture
+- **Consent Management**: Links to digital consent forms with signature capture
 
 ### Supported Task Types
 - Mental Arithmetic Task (MAT)
-- Sustained Attention to Response Task (SART)
 - Perceived Restorativeness Scale (PRS)
 - SER Baseline Recording
-- Custom surveys and questionnaires
+- Integrated Google surveys and questionnaires
 - Break/rest periods with media
 - PsychoPy external task integration
-- Demographics collection
+- Demographics collection through external surveys
 
 ### Session Management
 - Real-time experimenter-subject communication via SSE
@@ -62,7 +61,8 @@ This platform provides researchers with a comprehensive toolkit for designing an
 - Flask-CORS
 - Threading for concurrent operations
 - HDF5 for data storage
-- Transcription and SER model integration
+- Transcription via Azure Speech Services
+- Custom SER model integration
 
 **Frontend:**
 - React with Hooks
@@ -72,6 +72,10 @@ This platform provides researchers with a comprehensive toolkit for designing an
 
 ## Installation
 
+### NOTES
+- Please note that the SER model is too large for the repo and is hosted elsewhere (links to come). Certain SER related functions will not work unless the SER_MODEL folder and its contents are present in the root folder of the project.
+- To use Azure Speech Services, a .env file in the root folder is needed. This should hold login credentials and a valid Azure API key.
+
 ### Prerequisites
 - Python 3.8+
 - Node.js 14+
@@ -80,20 +84,21 @@ This platform provides researchers with a comprehensive toolkit for designing an
 ### Backend Setup
 
 Install Python dependencies:
-pip install flask flask-cors werkzeug
-
-Create required directories:
-mkdir -p experiments/templates experiments/trials experiments/subject_data
-mkdir -p test_files static/consent_forms tmp
-
+```
+   pip install -r requirements.txt
+```
+```
+   pip install flask flask-cors werkzeug
+```
 Run the Flask server:
-python app.py
+   python app.py
 
 ### Frontend Setup
 
-cd frontend
-npm install
-npm start
+In a second terminal, run:
+   cd frontend
+   npm install
+   npm start
 
 The application will be available at:
 - Frontend: http://localhost:3000
@@ -203,11 +208,11 @@ The platform supports integration with external tools like PsychoPy through tran
 
 ## License
 
-[Specify your license here]
+[TODO]
 
 ## Support
 
-For issues, questions, or contributions, please contact [your contact information].
+For issues, questions, or contributions, please contact Brian @ brn.cntrll at gmail.
 
 ## Citation
 
