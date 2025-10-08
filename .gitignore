@@ -24,8 +24,8 @@ trials/*
 frontend/src/components/procedures/VRRoomTaskComponent.js
 frontend/src/components/procedures/SARTComponent.js
 frontend/src/components/archived/
-frontend/build/static/video_files/*
-!frontend/build/static/video_files/.gitkeep
+static/video_files/*
+!static/video_files/.gitkeep
 .DS_Store
 **/.DS_Store
 /frontend/build/
