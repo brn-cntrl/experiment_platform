@@ -11,7 +11,7 @@
 }
 
 .ser-baseline-component .procedure-header {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  background: white;
   color: white;
   padding: 30px 40px;
   text-align: center;
@@ -66,11 +66,10 @@
 }
 
 .ser-baseline-component .task-instructions {
-  background: #f0fdf4;
+  background: #f8fafc;
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 30px;
-  border-left: 4px solid #059669;
 }
 
 .ser-baseline-component .task-instructions h4 {

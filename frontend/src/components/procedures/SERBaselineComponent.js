@@ -50,15 +50,15 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
     return questionSet || 'ser_1'; // Default to ser_1 if not configured
   };
 
-  const getQuestionSetDisplayName = () => {
-    const questionSet = getQuestionSet();
-    const displayNames = {
-      'ser_1': 'Standard Baseline Questions',
-      'ser_2': 'Extended Baseline Questions', 
-      'ser_3': 'Emotional Baseline Questions'
-    };
-    return displayNames[questionSet] || 'Standard Baseline Questions';
-  };
+  // const getQuestionSetDisplayName = () => {
+  //   const questionSet = getQuestionSet();
+  //   const displayNames = {
+  //     'ser_1': 'Standard Baseline Questions',
+  //     'ser_2': 'Extended Baseline Questions', 
+  //     'ser_3': 'Emotional Baseline Questions'
+  //   };
+  //   return displayNames[questionSet] || 'Standard Baseline Questions';
+  // };
 
   const handleBegin = async () => {
     try {
@@ -113,7 +113,7 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
             setCurrentQuestion('No more questions. Please click "Task Complete" to proceed to the next step.');
             setRecordingStatus('Task completed.');
         } else if (data.question) {
-            console.log('📋 Setting question:', data.question);
+            console.log('Setting question:', data.question);
         
             setTimeout(() => {
                 setCurrentQuestion(data.question);
@@ -129,7 +129,7 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
         }
         
     } catch (error) {
-        console.error('💥 Error fetching question:', error);
+        console.error('Error fetching question:', error);
         setRecordingStatus('Error loading question. Please try again.');
     }
 };
@@ -190,14 +190,9 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
       <div className="procedure-header">
         <div className="procedure-title">
           <h2>SER Baseline Recording</h2>
-          <h3>Speech Emotion Recognition - {getQuestionSetDisplayName()}</h3>
+          {/* <h3>Speech Emotion Recognition - {getQuestionSetDisplayName()}</h3> */}
         </div>
         <div className="procedure-meta">
-          <div className="duration">Duration: ~5 minutes</div>
-          <div className="active-metrics">
-            <span>Audio Recording Active</span>
-            <div className={`status-dot ${isRecording ? 'active' : ''}`}></div>
-          </div>
           {hasStarted && !taskCompleted && (
             <div className="question-progress">
               Question {questionIndex} in progress
@@ -213,8 +208,6 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
             <li>Press "Begin" to start recording</li>
             <li>Speak your answer to each question aloud</li>
             <li>Press "Submit Answer" to register your answer and receive the next question</li>
-            <li>Answer naturally and at a comfortable volume</li>
-            <li>Take your time to think before responding</li>
           </ul>
         </div>
 
@@ -276,7 +269,7 @@ const SERBaselineComponent = ({ sessionId, onTaskComplete, procedure }) => {
                   onClick={handleTaskComplete}
                   className="complete-btn"
                 >
-                  🎯 Task Complete
+                  Task Complete
                 </button>
               </div>
             </div>
