@@ -405,7 +405,6 @@ function PreTestInstructionsWizard({
   parsingEventMarkers,
   eventMarkerFilePath,
   launchEmotibitDataParser,
-  openEventMarkerFilePicker,
 
   // Shared state props
   emotiBitRunning,
@@ -1096,8 +1095,6 @@ function SettingsPanel({
   parsingEventMarkers,
   eventMarkerFilePath,
   launchEmotibitDataParser,
-  openEventMarkerFilePicker,
-  parseEventMarkerFile,
   emotiBitRunning,
   vernierRunning,
   polarRunning,
@@ -1268,28 +1265,19 @@ function SettingsPanel({
                 Import EmotiBit Data
               </button>
               <button
-                  onClick={launchEmotibitDataParser}
-                  className="import-emotibit-btn"
-                  disabled={!emotibitDataImported}
-                  style={{ marginTop: '10px' }}
-                >
-                  Open DataParser
-                </button>
+                onClick={launchEmotibitDataParser}
+                className="import-emotibit-btn"
+                disabled={!emotibitDataImported}
+                style={{ marginTop: '10px' }}
+              >
+              Open DataParser
+              </button>
 
-                <button
-                  onClick={openEventMarkerFilePicker}
-                  className="import-emotibit-btn"
-                  disabled={!emotibitDataImported || parsingEventMarkers}
-                  style={{ marginTop: '10px' }}
-                >
-                  {parsingEventMarkers ? 'Parsing...' : 'Parse Event Marker File'}
-                </button>
-
-                {uploadEmotibitStatus && (
-                <div className="emotibit-upload-status">
-                  {uploadEmotibitStatus}
-                </div>
-              )}
+              {uploadEmotibitStatus && (
+              <div className="emotibit-upload-status">
+                {uploadEmotibitStatus}
+              </div>
+            )}
               
               {emotibitFilePath && (
                 <div className="emotibit-file-path">
@@ -1697,14 +1685,40 @@ function ExperimenterInterface() {
     const summaryMessage = `Upload complete: ${successCount} successful, ${errorCount} failed`;
     setUploadEmotibitStatus(summaryMessage);
     
-    if (results.some(r => r.success && r.filePath)) {
-      const successfulPaths = results
-        .filter(r => r.success && r.filePath)
-        .map(r => `${r.filename}: ${r.filePath}`)
-        .join('\n');
-      setEmotibitFilePath(`EmotiBit CSV Locations:\n${successfulPaths}`);
-      setEmotibitDataImported(true);
-    }
+    const successfulResults = results.filter(r => r.success && r.filePath);
+      if (successfulResults.length > 0) {
+        const successfulPaths = successfulResults
+          .map(r => `${r.filename}: ${r.filePath}`)
+          .join('\n');
+        setEmotibitFilePath(`EmotiBit CSV Locations:\n${successfulPaths}`);
+        setEmotibitDataImported(true);
+
+        setParsingEventMarkers(true);
+        setEventMarkerFilePath('');
+        try {
+          for (const result of successfulResults) {
+            const parseResponse = await fetch('/api/parse-event-markers', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ session_id: currentSession, file_path: result.filePath })
+            });
+            const parseData = await parseResponse.json();
+            if (parseResponse.ok && parseData.success) {
+              setEventMarkerFilePath(prev =>
+                prev + `Event markers parsed: ${parseData.markers_count} markers\nFile: ${parseData.file_path}\n`
+              );
+            } else {
+              setEventMarkerFilePath(prev =>
+                prev + `Parse failed for ${result.filename}: ${parseData.error}\n`
+              );
+            }
+          }
+        } catch (err) {
+          setEventMarkerFilePath('Error during automatic marker parsing.');
+        } finally {
+          setParsingEventMarkers(false);
+        }
+      }
 
     console.log('Upload results:', results);
   };
@@ -1737,54 +1751,50 @@ function ExperimenterInterface() {
     }
   };
 
-  const openEventMarkerFilePicker = () => {
-    document.getElementById('event-marker-file-input').click();
-  };
+  // const parseEventMarkerFile = async (event) => {
+  //   if (!event || !event.target || !event.target.files) {
+  //     console.error('No file selected');
+  //     return;
+  //   }
 
-  const parseEventMarkerFile = async (event) => {
-    if (!event || !event.target || !event.target.files) {
-      console.error('No file selected');
-      return;
-    }
+  //   const file = event.target.files[0];
+  //   if (!file) {
+  //     return;
+  //   }
 
-    const file = event.target.files[0];
-    if (!file) {
-      return;
-    }
+  //   if (!file.name.endsWith('.csv')) {
+  //     alert('Please select a CSV file');
+  //     return;
+  //   }
 
-    if (!file.name.endsWith('.csv')) {
-      alert('Please select a CSV file');
-      return;
-    }
+  //   setParsingEventMarkers(true);
+  //   setEventMarkerFilePath('');
 
-    setParsingEventMarkers(true);
-    setEventMarkerFilePath('');
+  //   try {
+  //     const formData = new FormData();
+  //     formData.append('ground_truth_file', file);
+  //     formData.append('session_id', currentSession);
 
-    try {
-      const formData = new FormData();
-      formData.append('ground_truth_file', file);
-      formData.append('session_id', currentSession);
+  //     const response = await fetch('/api/parse-event-markers', {
+  //       method: 'POST',
+  //       body: formData
+  //     });
 
-      const response = await fetch('/api/parse-event-markers', {
-        method: 'POST',
-        body: formData
-      });
+  //     const data = await response.json();
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        setEventMarkerFilePath(`Event markers parsed successfully!\nFile: ${data.file_path}\nMarkers found: ${data.markers_count}`);
-        alert(`Event markers parsed successfully!\n${data.markers_count} markers found.`);
-      } else {
-        alert(`Failed to parse event markers: ${data.error || 'Unknown error'}`);
-      }
-    } catch (error) {
-      console.error('Error parsing event markers:', error);
-      alert('Error parsing event markers. Please try again.');
-    } finally {
-      setParsingEventMarkers(false);
-    }
-  };
+  //     if (response.ok && data.success) {
+  //       setEventMarkerFilePath(`Event markers parsed successfully!\nFile: ${data.file_path}\nMarkers found: ${data.markers_count}`);
+  //       alert(`Event markers parsed successfully!\n${data.markers_count} markers found.`);
+  //     } else {
+  //       alert(`Failed to parse event markers: ${data.error || 'Unknown error'}`);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error parsing event markers:', error);
+  //     alert('Error parsing event markers. Please try again.');
+  //   } finally {
+  //     setParsingEventMarkers(false);
+  //   }
+  // };
 
   useEffect(() => {
     console.log('First useEffect called');
@@ -2674,14 +2684,6 @@ useEffect(() => {
         id="main-emotibit-file-input"
         style={{ display: 'none' }}
       />
-      <input
-        type="file"
-        accept=".csv"
-        onChange={parseEventMarkerFile}
-        className="emotibit-file-input-hidden"
-        id="event-marker-file-input"
-        style={{ display: 'none' }}
-      />
       <header className="experimenter-header">
         <div className="header-left">
           <h1>Experimenter Control Panel</h1>
@@ -2905,15 +2907,6 @@ useEffect(() => {
         Open DataParser
       </button>
 
-      <button
-        onClick={openEventMarkerFilePicker}
-        className="import-emotibit-btn"
-        disabled={!emotibitDataImported || parsingEventMarkers}
-        style={{ marginTop: '10px' }}
-      >
-        {parsingEventMarkers ? 'Parsing...' : 'Parse Event Marker File'}
-      </button>
-
       {uploadEmotibitStatus && (
         <div className="emotibit-upload-status" style={{ margin: '10px 0' }}>
           {uploadEmotibitStatus}
@@ -3009,7 +3002,6 @@ useEffect(() => {
         parsingEventMarkers={parsingEventMarkers}
         eventMarkerFilePath={eventMarkerFilePath}
         launchEmotibitDataParser={launchEmotibitDataParser}
-        openEventMarkerFilePicker={openEventMarkerFilePicker}
         emotiBitRunning={emotiBitRunning}
         vernierRunning={vernierRunning}
         polarRunning={polarRunning}
@@ -3045,7 +3037,6 @@ useEffect(() => {
           parsingEventMarkers={parsingEventMarkers}
           eventMarkerFilePath={eventMarkerFilePath}
           launchEmotibitDataParser={launchEmotibitDataParser}
-          openEventMarkerFilePicker={openEventMarkerFilePicker}
           emotiBitLoading={emotiBitLoading}
           vernierLoading={vernierLoading}
           polarLoading={polarLoading}

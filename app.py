@@ -1071,109 +1071,155 @@ def launch_emotibit_parser():
             "error": str(e)
         }), 500
 
+def _parse_emotibit_markers(ground_truth_file, subject_dir, subject_id):
+    markers = []
+    lines_checked = 0
+    with open(ground_truth_file, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith(('%', '#')):
+                continue
+            parts = line.split(',')
+            while parts and parts[-1].strip() == '':
+                parts.pop()
+            if len(parts) < 8 or parts[3].strip() != 'LM':
+                continue
+            lines_checked += 1
+            payload = {}
+            i = 6
+            while i + 1 < len(parts):
+                key = parts[i].strip()
+                value = parts[i + 1].strip()
+                if key:
+                    payload[key] = value
+                i += 2
+            if 'LD' not in payload:
+                continue
+            try:
+                markers.append({
+                    'EmotiBitTimestamp': int(parts[0].strip()),
+                    'PacketNumber': int(parts[1].strip()),
+                    'LslLocalTimestamp': float(payload.get('LC', 0)),
+                    'LslMarkerSourceTimestamp': float(payload.get('LM', 0)),
+                    'LslMarkerRxTimestamp': float(payload.get('LR', 0)),
+                    'MarkerData': payload['LD']
+                })
+            except (ValueError, IndexError) as parse_err:
+                print(f"Skipping malformed LM line: {parse_err}")
+                continue
+
+    if not markers:
+        return None, lines_checked
+
+    import csv
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    output_filename = f"{timestamp}_{subject_id}_emotibit_LSL_event_markers.csv"
+    output_filepath = os.path.join(subject_dir, output_filename)
+
+    with open(output_filepath, 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = ['EmotiBitTimestamp', 'PacketNumber', 'LslLocalTimestamp',
+                      'LslMarkerSourceTimestamp', 'LslMarkerRxTimestamp', 'MarkerData']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(markers)
+
+    return output_filepath, lines_checked
+
 @app.route('/api/parse-event-markers', methods=['POST'])
 def parse_event_markers():
-    """
-    Parse LSL markers from EmotiBit ground truth CSV file.
-    Looks for the most recent ground truth file in the subject's directory.
-    """
     global event_manager, subject_manager
-    
     try:
-        data = request.json
+        data = request.get_json()
         session_id = data.get('session_id')
-        
+        ground_truth_file = data.get('file_path')
+
         if not session_id or session_id not in ACTIVE_SESSIONS:
             return jsonify({'error': 'Invalid or missing session ID'}), 400
-        
+
+        if not ground_truth_file or not os.path.exists(ground_truth_file):
+            return jsonify({'success': False, 'error': 'Ground truth file not found on server.'}), 400
+
         session_data = ACTIVE_SESSIONS[session_id]
         subject_dir = session_data.get('subject_dir')
-        
         if not subject_dir or not os.path.exists(subject_dir):
             return jsonify({'error': 'Subject directory not found'}), 400
-        
-        # Find the most recent ground truth CSV file
-        ground_truth_files = [
-            f for f in os.listdir(subject_dir) 
-            if f.endswith('_emotibit_ground_truth.csv')
-        ]
-        
-        if not ground_truth_files:
-            return jsonify({'error': 'No EmotiBit ground truth file found. Please import EmotiBit data first.'}), 400
-        
-        # Sort by modification time and get the most recent
-        ground_truth_files.sort(
-            key=lambda f: os.path.getmtime(os.path.join(subject_dir, f)), 
-            reverse=True
-        )
-        ground_truth_file = os.path.join(subject_dir, ground_truth_files[0])
-        
-        # Parse the file for LSL markers
+
         markers = []
+        lines_checked = 0
         with open(ground_truth_file, 'r', encoding='utf-8') as f:
             for line in f:
-                # Skip comment lines
-                if line.startswith(('%', '#')):
+                line = line.strip()
+                if not line or line.startswith(('%', '#')):
                     continue
-                
-                parts = line.strip().split(',')
-                if len(parts) < 7:
+
+                parts = line.split(',')
+                while parts and parts[-1].strip() == '':
+                    parts.pop()
+
+                if len(parts) < 8:
                     continue
-                
-                # Check if this is an LSL marker line (type code 'LM')
-                if parts[3] == 'LM':
-                    # Parse the payload key-value pairs
-                    payload = {}
-                    for i in range(6, len(parts) - 1, 2):
-                        if i + 1 < len(parts):
-                            key = parts[i].strip()
-                            value = parts[i + 1].strip()
-                            if key and value:
-                                payload[key] = value
-                    
-                    # If we found marker data, add it to our list
-                    if 'LD' in payload:
-                        markers.append({
-                            'EmotiBitTimestamp': int(parts[0]),
-                            'PacketNumber': int(parts[1]),
-                            'LslLocalTimestamp': float(payload.get('LC', 0)),
-                            'LslMarkerSourceTimestamp': float(payload.get('LM', 0)),
-                            'LslMarkerRxTimestamp': float(payload.get('LR', 0)),
-                            'MarkerData': payload['LD']
-                        })
-        
+
+                if parts[3].strip() != 'LM':
+                    continue
+
+                lines_checked += 1
+                payload = {}
+                i = 6
+                while i + 1 < len(parts):
+                    key = parts[i].strip()
+                    value = parts[i + 1].strip()
+                    if key:
+                        payload[key] = value
+                    i += 2
+
+                if 'LD' not in payload:
+                    continue
+
+                try:
+                    markers.append({
+                        'EmotiBitTimestamp': int(parts[0].strip()),
+                        'PacketNumber': int(parts[1].strip()),
+                        'LslLocalTimestamp': float(payload.get('LC', 0)),
+                        'LslMarkerSourceTimestamp': float(payload.get('LM', 0)),
+                        'LslMarkerRxTimestamp': float(payload.get('LR', 0)),
+                        'MarkerData': payload['LD']
+                    })
+                except (ValueError, IndexError) as parse_err:
+                    print(f"Skipping malformed LM line: {parse_err} — {line[:80]}")
+                    continue
+
+        print(f"Scanned {lines_checked} LM lines, found {len(markers)} markers with LD payload")
+
         if not markers:
             return jsonify({
                 'success': False,
-                'error': 'No LSL markers found in the ground truth file'
+                'error': f'No LSL markers with marker data (LD field) were found in the ground truth file. '
+                         f'Scanned {lines_checked} LM-type lines. '
+                         f'Verify this is the correct ground truth CSV from EmotiBit DataParser.'
             }), 400
-        
-        # Create output filename
+
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        subject_id = subject_manager.subject_id or 'unknown'
-        output_filename = f"{timestamp}_{subject_id}_emotibit_event_markers.csv"
+        subject_id = subject_manager.subject_id if subject_manager and subject_manager.subject_id else 'unknown'
+        output_filename = f"{timestamp}_{subject_id}_emotibit_LSL_event_markers.csv"
         output_filepath = os.path.join(subject_dir, output_filename)
-        
-        # Write markers to CSV
+
         import csv
         with open(output_filepath, 'w', newline='', encoding='utf-8') as csvfile:
-            if markers:
-                fieldnames = markers[0].keys()
-                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                writer.writeheader()
-                writer.writerows(markers)
-        
-        print(f"Parsed {len(markers)} event markers from {ground_truth_files[0]}")
-        print(f"Saved to: {output_filepath}")
-        
+            fieldnames = ['EmotiBitTimestamp', 'PacketNumber', 'LslLocalTimestamp',
+                          'LslMarkerSourceTimestamp', 'LslMarkerRxTimestamp', 'MarkerData']
+            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(markers)
+
+        print(f"Parsed {len(markers)} event markers. Saved to: {output_filepath}")
+
         return jsonify({
             'success': True,
-            'message': 'Event markers parsed successfully',
+            'message': f'Successfully parsed {len(markers)} event markers',
             'markers_count': len(markers),
-            'file_path': output_filepath,
-            'source_file': ground_truth_files[0]
+            'file_path': output_filepath
         }), 200
-        
+
     except Exception as e:
         print(f"Error parsing event markers: {e}")
         import traceback
