@@ -181,19 +181,18 @@ chmod +x download_assets.sh
 
 **Option 2: Manual Download**
 
-Download the XRLAB_assets.zip file from Google Drive: [Download link](YOUR_GOOGLE_DRIVE_LINK)
+Download the SER_MODEL.zip file from Google Drive: https://drive.google.com/drive/folders/1zXVnBwJzZvEJMk1tCsEtMSKdXrmIYo7Y?usp=sharing
 
 Then extract and organize:
 ```bash
 # Extract the archive
-unzip XRLAB_assets.zip
+unzip SER_MODEL.zip
 
 # Move to correct locations
-mv XRLAB_assets/SER_MODEL .
-mv XRLAB_assets/video_files static/
+mv SER_MODEL .
 
 # Cleanup
-rm -rf XRLAB_assets XRLAB_assets.zip
+rm -rf SER_MODEL.zip
 ```
 
 **Required Files:**
